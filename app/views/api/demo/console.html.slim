@@ -1,0 +1,53 @@
+.regular-content#api-console
+  h1 Try our API right in your browser !
+  .panel.panel-default
+    .panel-heading
+      .row#requester
+        .col-xs-2
+          select.form-control#presets
+            option value='token' Generate Token
+            option value='galleries' Galleries List
+            option value='folders' Folders List
+            option value='create_invite' Invite User
+            option value='destroy_invite' Withdraw Invite
+        .col-xs-7
+          input.form-control#url name='url' type='text' value='' data-base='http://#{configatron.host}'
+        .col-xs-3
+          select.form-control#type name='type'
+            option value='GET' GET
+            option(value='POST' selected) POST 
+            option value='DELETE' DELETE
+            option value='PUT' PUT
+      #toolbar
+        button.btn.btn-primary#send Send
+      #additional-params.form
+        h5 Request params
+        .row
+          .col-md-4
+            input.form-control name='key[0]' placeholder='Key'
+          .col-md-4
+            input.form-control name='value[0]' placeholder='Value'
+        .row
+          .col-md-4
+            input.form-control name='key[1]' placeholder='Key'
+          .col-md-4
+            input.form-control name='value[1]' placeholder='Value'
+        .row
+          .col-md-4
+            input.form-control name='key[2]' placeholder='Key'
+          .col-md-4
+            input.form-control name='value[2]' placeholder='Value'
+        .row
+          .col-md-4
+            input.form-control name='key[3]' placeholder='Key'
+          .col-md-4
+            input.form-control name='value[3]' placeholder='Value'
+    .panel-body
+      h4 
+        | Result
+      #status
+        span.label.label-primary> Code
+        span.result 200 OK
+      .row
+        .col-md-8
+          textarea.form-control#result rows=10

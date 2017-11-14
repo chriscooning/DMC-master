@@ -1,0 +1,40 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      button.close data-dismiss="modal" &times;
+      h4.modal-title Edit File
+    .modal-body
+      form#file-uploader.asset-attributes
+        .form-group
+          label Gallery
+          select.form-control#galleries name='gallery_id'
+        .form-group
+          label Folder
+          select.form-control#folders name='folder_id'
+        .form-group
+          label Title
+          input.form-control name='title' maxlength=50 value="#{@title}"
+          span.hint Limit 50 characters
+        .form-group
+          label Description
+          textarea.form-control#description name='description' rows=7 = @description 
+        .checkbox
+          label
+            input(type='checkbox' name='downloadable' value='1' checked=!!@downloadable) Allow visitors to download this media
+        .form-group
+          label Enter tags
+          input.form-control#tags-input name='tag_list' value=@tags
+        .form-group
+          label Custom thumbnail
+          .clear
+          .btn.btn-primary.btn-file
+            ' Browse
+            input#alter-thumb name='asset[custom_thumbnail]' type='file'
+        #progress.progress.progress-striped.active style='display: none'
+          .bar.progress-bar.progress-bar-warning
+        - if @thumb_url
+          #video-preview
+            .preview.current-thumbnail
+              img src=@thumb_url width='300'
+    .modal-footer
+      button.update.btn.btn-success Update Asset

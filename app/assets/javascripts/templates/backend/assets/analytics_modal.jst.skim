@@ -1,0 +1,25 @@
+.modal-dialog.analytics-modal
+  .modal-content
+    .modal-header
+      button.close data-dismiss="modal" &times;
+      h4.modal-title Asset Analytics
+    .modal-body
+      .filters
+        .row
+          .form-group.col-md-4
+            label From Date
+            input.datetime.form-control#from-filter name='from' value=""
+          .form-group.col-md-4
+            label To Date
+            input.datetime.form-control#to-filter name='to' value=""
+        .row
+          .form-group.col-md-12
+            label.checkbox-inline
+              input#graph-downloads.graph-types> (type='checkbox' checked)
+              ' Show downloads
+      .main-block.row
+        #loading
+          | Loading ...
+        #graph style="height: 300px;"
+    .modal-footer
+      button.btn.btn-primary.report Get report

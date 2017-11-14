@@ -1,0 +1,4 @@
+h1 Hello!
+p You've been granted access to gallery(ies) as viewer to the following galleries
+- @invites.each do |invite|
+  p = link_to invite.gallery.name, gallery_url(invite.gallery_id, host: @user_host)

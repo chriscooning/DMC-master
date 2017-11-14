@@ -1,0 +1,33 @@
+table.table.table-striped
+  thead
+    tr
+      th Asset
+      th Thumbnail
+      th File name
+      th Last user
+      th Last downloaded at
+      th Total download count
+      th
+  tbody
+    - downloads.each do |download|
+      tr
+        td = download.target_title
+        td
+          - if download.target.present?
+            - if download.target.document?
+              span.glyphicon.glyphicon-file
+            - else
+              = link_to "#!/downloads/#{download.target_id}" do
+                = image_tag(download.target.thumb_url, width: 100)
+        td = download.file_file_name
+        td = download.subject_name
+        td = download.created_at_display
+        td = download.total_count
+        td = link_to "Show Details", detailed_downloads_path(target_id: download.target_id)
+= render 'shared/pagination', resource: downloads, controller: 'downloads', action: 'index'
+
+javascript:
+  window.downloads_collection = new DMC.Collections.PreviewAssets(_.compact(#{ raw downloads.to_json }));
+  if(window.DMC.route) {
+    window.DMC.route.downloads_collection = downloads_collection;
+  }

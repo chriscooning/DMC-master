@@ -1,0 +1,8 @@
+tr.template-download
+  td colspan="3"
+    p Sorry, we can't store #{ @asset.file_file_name } file on server 
+  td
+    .btn-group
+      button.btn.btn-danger.delete data-url="/assets/#{@asset.id}"
+        i.glyphicon.glyphicon-ban-circle
+        span  Delete

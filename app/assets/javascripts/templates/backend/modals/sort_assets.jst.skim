@@ -1,0 +1,7 @@
+.modal-dialog.sort-modal
+  .modal-content
+    .modal-header
+      button.close data-dismiss="modal" &times;
+      h4.modal-title Sort assets
+    .modal-body
+      .assets-sort-list

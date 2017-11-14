@@ -1,0 +1,7 @@
+h1 Recover gallery invitation link
+.col-md-5
+  = form_tag do
+    p.help-block Please enter your email address below
+    .form-group
+      = email_field_tag :email, '', class: 'form-control'
+    = button_tag "Resend invitation link", class: "btn btn-primary"

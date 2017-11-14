@@ -1,0 +1,44 @@
+javascript:
+  $(function(){
+    enablePermissionsHelperLinks('#content');
+  })
+
+.form-group
+  = link_to 'Expand all tabs', '#',   data: { action: 'expand-all' }
+  '
+  = link_to 'Collapse all tabs', '#', data: { action: 'collapse-all'}
+  '
+  = link_to 'Select all permissions', '#', data: { action: 'select-all'}
+  '
+  = link_to 'Reset all permissions', '#', data: { action: 'unselect-all'}
+
+  #accordion.panel-group
+    .panel.panel-default
+      .panel-heading
+        .panel-title
+          a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" Account Permissions
+      #collapseOne.panel-collapse.collapse
+        .panel-body
+          .checkboxes
+            = f.collection_check_boxes :permission_ids, current_account.permissions.common, :id, :description, item_wrapper_class: 'checkbox_container'
+
+    - current_account.galleries.includes(:permissions, folders: :permissions).each do |gallery|
+      .panel.panel-default
+        .panel-heading
+          h4.panel-title
+            a data-toggle="collapse" data-parent="#accordion" href="#collapseg#{ gallery.id }" #{ gallery.name } Gallery
+        .panel-collapse.collapse id="collapseg#{ gallery.id }"
+          .panel-body
+            .checkboxes
+              = f.collection_check_boxes :permission_ids, gallery.permissions, :id, :description, item_wrapper_class: 'checkbox_container'
+
+            - if gallery.folders.present?
+              #accordionInner.panel-group
+                - gallery.folders.each do |folder|
+                  .panel.panel-default
+                    .panel-heading
+                      h4.panel-title
+                        a data-toggle="collapse" data-parent="#accordionInner" href="#collapsef#{folder.id}" #{ folder.name } Folder
+                    .panel-collapse.collapse id="collapsef#{folder.id}"
+                      .panel-body
+                        .checkboxes.inline = f.collection_check_boxes :permission_ids, folder.permissions, :id, :description, item_wrapper_class: 'checkbox_container'

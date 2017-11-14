@@ -1,0 +1,6 @@
+#pdf-preview
+  span>
+    | It appears you don't have Adobe Reader or PDF support in this web browser.
+  a> href=@url target="_blank"
+    | Click here
+  span to download the PDF

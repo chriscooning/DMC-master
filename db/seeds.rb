@@ -1,0 +1,5 @@
+require_relative 'seeds/base'
+require_relative 'seeds/db_truncate'
+require_relative 'seeds/users'
+require_relative 'seeds/assets'
+require_relative 'seeds/permissions'

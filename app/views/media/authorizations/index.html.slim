@@ -1,0 +1,22 @@
+#media-authorizations-index
+  h1 Your authorizations
+  table#authorizations-list.table.table-striped
+    thead
+      tr
+        th Access For
+        th Requested At
+        th Status
+        th Actions
+    tbody
+      - if @authorizations.any?
+        - @authorizations.each do |auth|
+          tr
+            td = link_to auth.target_name, auth.target_url
+            td = auth.created_at_display
+            td = auth.status.capitalize
+            td
+              = link_to "Destroy", authorization_path(auth), class: "btn btn-danger", method: "DELETE",\
+                data: { confirm: "Are you sure?" }
+
+  - unless @authorizations.any?
+    h3.text-center You don't have any authorizations yet

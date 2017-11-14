@@ -1,0 +1,7 @@
+h1 Recover gallery invitation link
+.col-md-5
+  = form_for @invite, as: :invite, url: gallery_invitation_request_path(@invite.gallery_id) do |f|
+    p.help-block Please enter your email address below
+    .form-group
+      = f.email_field :email, class: 'form-control', placeholder: 'email@example.com'
+    = button_tag "Send invitation request", class: "btn btn-primary"

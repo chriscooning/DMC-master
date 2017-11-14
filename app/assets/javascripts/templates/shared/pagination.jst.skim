@@ -1,0 +1,19 @@
+ul.pagination
+  - if @currentPage > @firstPage
+    li
+      a href="#{@urlRoot}/page/#{@currentPage - 1}" &laquo;
+  - for page in @pageSet
+    - if (@currentPage == page)
+      li.active
+        span = page
+    - else
+      li
+        a href="#{@urlRoot}/page/#{page}" = page
+  - if @currentPage < @totalPages
+    li
+      a href="#{@urlRoot}/page/#{@currentPage + 1}" &raquo;
+.form-group.pagination.col-md-1.pull-right
+  select.form-control name='paginate_per'
+    option(value='8' selected=(@perPage == 8)) 8
+    option(value='16' selected=(@perPage == 16)) 16
+    option(value='24' selected=(@perPage == 24)) 24

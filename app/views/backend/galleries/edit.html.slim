@@ -1,0 +1,37 @@
+javascript:
+  window.selected_gallery_id = #{raw @gallery.id }
+  
+= simple_nested_form_for @gallery.resource do |f|
+  #gallery-edit.regular-content
+    .page-header
+      h1 Gallery Settings
+
+    .col-md-8.col-md-offset-2
+      = f.input :name
+      h3 Menu Link
+      #menu-links-list
+        = f.fields_for :menu_links do |ml|
+          .row
+            .col-md-1
+              .btn.btn-link
+                span.glyphicon.glyphicon-resize-vertical
+            .col-md-4
+              = ml.input :position, as: :hidden
+              = ml.input :link, label: false
+            .col-md-4
+              = ml.input :content, label: false
+            .col-md-3
+              = ml.link_to_remove class: 'btn btn-danger' do 
+                span.glyphicon.glyphicon-remove-circle 
+                |  Delete this link
+        = f.link_to_add "New external link", :menu_links
+
+      h3 Portal
+      = f.input :featured
+      = f.input :featured_image
+      - if @gallery.featured_image?
+        h4 Current image
+        = image_tag @gallery.featured_image.url(:default), height: 200
+      h3 Custom Messages
+      = f.input :gallery_message
+      = f.button :submit, class: 'btn btn-primary'

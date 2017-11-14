@@ -1,0 +1,179 @@
+javascript:
+  new WOW().init();
+section.home-intro.cta-bg-animated
+  .container
+    .text-group
+      h1.animated.bounceInDown Cloud Based Media Distribution
+      .desc.animated.bounceInUp The streamlined solution for businesses and events in providing rapid, accurate media content to the digital press
+      .sign-up.animated.zoomIn
+        = link_to 'Signup Free', new_user_registration_path, class: 'btn btn-primary btn-large'
+    .parallax
+      = image_tag 'home/clouds_bg.png', class: 'clouds_bg'
+      = image_tag 'home/clouds.png', class: 'clouds'
+
+section.home-usage
+  .container
+    .row.platformUsage
+      #details.col-md-4.animated.fadeIn
+        h2 Event Media Distribution
+        .feature  Share your media with newsrooms around the world instantly. Maximize exposure for your event.
+      #details.col-md-4.animated.fadeIn
+        h2 Asset Management
+        .feature  Archive media into one, easy-to-access platform. Manage and sort large amounts of content into multiple galleries and folders.
+      #details.col-md-4.animated.fadeIn
+        h2 Business Solutions
+        .feature  Distribute training videos and documents. Keep track of who is viewing what or even granting access to certain employees.
+
+section.home-features
+  .container                    
+    #missioncontrol.row.featureRow.wow.animated.fadeInLeft
+      .col-md-6
+        h2 Mission Control for your videos
+        .feature Create a themeable content portal with as many galleries you need. Share videos outside of your gallery by using embed codes to post your video on webistes and social media. 
+      .col-md-6
+        .feature
+          img.img-responsive src="http://placehold.it/565x320" alt="Mission Control for Videos"
+    #security.row.featureRow.wow.animated.fadeInRight
+      .col-md-6
+        .feature
+          img.img-responsive src="http://placehold.it/565x320" alt="Security Features"
+      .col-md-6
+        h2 Security
+        .feature Keep your videos both secure and private with our security and privacy settings. Password protect media, hide folders from the public and allow exclusive access.
+    #analytics.row.featureRow.wow.animated.fadeInLeft
+      .col-md-6
+        h2 Analytics
+        .feature Keep track of how, where and when your videos are being viewed. Yeah science!
+      .col-md-6
+        .feature
+          img.img-responsive src="http://placehold.it/565x320" alt="Analytics"
+    /#calltoaction.row.featureRowLast.animated.fadeInRight
+      .col-md-6
+        .feature
+          img.img-responsive src="http://placehold.it/565x320" alt="Call to Action"
+      .col-md-6
+        h2 Call to Action
+        .feature Show an email subscribe form or link after users view a video.
+
+section.ourCustomers
+  .container
+    .row
+      .col-md-12
+        /h2 A Few of Our Happiest Customers
+        h2.wow.animated.flipInX A Few of Our Happiest Users
+      .col-md-3
+        = image_tag 'home/taylorfarmsLogo.png', class: 'img-responsive wow animated flipInX'
+      .col-md-3
+        = image_tag 'home/concoursLogo.png', class: 'img-responsive concoursLogo wow animated flipInX'
+      .col-md-3
+        =image_tag src='http://placehold.it/260x100', class: 'img-responsive wow animated flipInX'
+        | Monterey Country Visitors Bureau
+      .col-md-3
+        =image_tag src='http://placehold.it/260x100', class: 'img-responsive wow animated flipInX'
+        | Carmel Art and Film
+
+//section.pricing-wrapper
+  .glow
+    .earth
+      .container
+        .row.flat
+          h2 Your budget doesn't need to be able to fund a space program...
+          h3 Pricing plans for everyone on Earth.
+          .col-lg-2.col-md-2.col-xs-6.col-md-offset-1.priceTable
+            ul.plan.plan1
+              li.plan-name
+                | Aries
+              li.plan-price
+                strong $29
+                |  / month
+              li
+                strong 30GB
+                |  Storage
+              li
+                strong 30GB
+                |  Bandwidth
+              li
+                strong 75 Cents
+                |  per GB overages
+              /li.plan-action
+                /a.btn.btn-primary.btn-lg href="#" Sign-up
+          .col-lg-2.col-md-2.col-xs-6
+            ul.plan.plan2
+              li.plan-name
+                | Javelin
+              li.plan-price
+                strong $59
+                |  / month
+              li
+                strong 60GB
+                |  Storage
+              li
+                strong 60GB
+                |  Bandwidth
+              li
+                strong 75 Cents
+                |  per GB overages
+              /li.plan-action
+                /a.btn.btn-primary.btn-lg href="#" Sign-up
+          .col-lg-2.col-md-2.col-xs-6
+            ul.plan.plan3
+              li.plan-name
+                | Atlas
+              li.plan-price
+                strong $119
+                |  / month
+              li
+                strong 100GB
+                |  Storage
+              li
+                strong 100GB
+                |  Bandwidth
+              li
+                strong 50 Cents
+                |  per GB overages
+              /li.plan-action
+                /a.btn.btn-primary.btn-lg href="#" Sign-up
+          .col-lg-2.col-md-2.col-xs-6
+            ul.plan.plan4
+              li.plan-name
+                | Titan
+              li.plan-price
+                strong $349
+                | / month
+              li
+                strong 500GB
+                |  Storage
+              li
+                strong 500GB
+                |  Bandiwidth
+              li
+                strong 50 Cents
+                |  per GB overages
+              /li.plan-action
+                /a.btn.btn-primary.btn-lg href="#" Sign-up
+          .col-lg-2.col-md-2.col-xs-6
+            ul.plan.plan1
+              li.plan-name
+                | Saturn V
+              li.plan-price
+                strong $499
+                |  / month
+              li
+                strong Unlimited
+                |  Storage
+              li
+                strong 500GB
+                |  Bandwidth
+              li
+                strong 25 Cents
+                |  per GB overages
+              /li.plan-action
+                /a.btn.btn-primary.btn-lg href="#" Sign-up
+
+.section
+  .col-md-12.landingCTA.cta-bg-animated
+    h1.wow.animated.bounceInDown Create your free account today.
+    h2.wow.animated.bounceInUp No credit card required.
+    /h1 Create your account today.
+    /h2 No credit card required.
+    a.btn.btn-primary.btn-lg.wow.animated.zoomIn href="#" Start Free Trial

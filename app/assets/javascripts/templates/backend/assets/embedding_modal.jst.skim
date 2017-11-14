@@ -1,0 +1,30 @@
+.modal-dialog.embedding-modal
+  .modal-content
+    .modal-header
+      button.close data-dismiss="modal" &times;
+      h4.modal-title Generate embeddig code
+    .modal-body
+      .form
+        .checkbox
+          label
+            input#autoplay type='checkbox' value='1' name='autoplay'
+            | Enable autoplay
+        .form-group
+          label Sharing options
+          select.form-control#sharing
+            option value='' No sharing
+            option value='email' Link only
+            option value='both' Embedding code and link
+        .form-group
+          .row
+            .col-md-6
+              label Video width
+              input.form-control#video-width name='width' value='500'
+            .col-md-6
+              label Video height
+              input.form-control#video-height name='height' value='300'
+        .from-group
+          label Embedding code
+          textarea#embedding-code.form-control readonly='true' rows=4
+    .modal-footer
+      a.btn.btn-primary.generate href="#" Generate

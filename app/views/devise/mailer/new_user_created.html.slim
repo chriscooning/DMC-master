@@ -1,0 +1,10 @@
+h2 Hello, #{@resource.full_name}
+
+p
+  | We've made some upgrades recently that affect the way you access your account. Now you can access all the content galleries at once just by logging into an account. You'll use your e-mail and a password to login, but first we need you to [create a new password].
+
+p
+  = link_to 'Change my password', edit_password_url(@resource, reset_password_token: @token)
+
+p
+  | Your password won't change until you access the link above and create a new one.

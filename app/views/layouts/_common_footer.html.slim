@@ -1,0 +1,42 @@
+#footer
+  .container
+    .col-md-3
+      h4 Product
+      ul.footer-nav
+        /= navigation_link_to "Features", static_page_path("features")
+        li = link_to "Support", "//digitalmediacenter.tenderapp.com/", target: :_blank
+    .col-md-3
+      h4 Company
+      ul.footer-nav
+        /= navigation_link_to "Team", static_page_path("team")
+        = navigation_link_to "Privacy Policy", static_page_path("privacy")
+        = navigation_link_to "Terms of Service", static_page_path("terms")
+    .col-md-3.blogColumn
+      h4 Blog
+      - if last_blog_post
+        = link_to blog_posts_path do
+          - if last_blog_post.image?
+            = image_tag last_blog_post.image.url(:small), height: 40
+          br
+          = last_blog_post.title
+    .col-md-2.socialColumn
+      ul.footer-nav.social
+        li
+          = image_tag "footer/fb-socialicon.png"
+        li
+          = image_tag "footer/gplus-socialicon.png"
+        li
+          = image_tag "footer/twitter-socialicon.png"
+    .col-md-2
+      .text-muted.credit
+        - if !backend? && current_account.try(:restrictions_message).present?
+          a.pull-right#restrictions href="#" Restrictions
+- if !backend? && current_account.try(:restrictions_message).present?
+  .modal.fade#restrictions-modal
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close data-dismiss="modal" aria-hidden="true" &times;
+          h4.modal-title Restrictions
+        .modal-body
+          = current_account.restrictions_message

@@ -1,0 +1,38 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      button.close data-dismiss="modal" &times;
+      h4.modal-title Edit folder
+    .modal-body
+      form.folder-attributes
+        .form-group
+          label for='folder-name' Name
+          input#gallery-name.form-control type='text' name='name' value="#{ @name }" placeholder="Enter gallery name"
+        .form-group
+          label Move to Gallery
+          select.form-control#galleries(name='gallery_id' data-integer)
+            - for gallery in @galleries
+              option(value=gallery[0] selected=(@gallery_id == gallery[0])) = gallery[1]
+        .form-group
+          label Assets per page
+          select.form-control#galleries(name='default_per_page' data-integer)
+            - for value in @per_pages
+              option(value="#{value}" selected=(@default_per_page == value)) = value
+        .checkbox
+          label
+            input(type='checkbox' name='hide_title' value='1' checked=!!@hide_title) Hide assets title
+        .checkbox
+          label
+            input(type='checkbox' name='hide_description' value='1' checked=!!@hide_description) Hide assets description
+        .checkbox
+          label
+            input(type='checkbox' name='hide_folder' value='1' checked=!!@hide_folder) Hide this folder from visitors
+        .checkbox
+          label
+            input#password(type='checkbox' name='enable_password' value='1' checked=!!@enable_password) Enable password protection
+        .form-group#password-field class=('hide' if !@enable_password)
+          label for='password' Password
+          input.form-control type='password' placeholder='Enter new password' name='password'
+    .modal-footer
+      button.btn.btn-default data-dismiss="modal" Close
+      a.btn.btn-primary.save Save changes

@@ -1,0 +1,10 @@
+#sort-link style="float: left;"
+  a href="#!folders/#{ @folder_id }/sort" class="btn btn-link"
+    ' Sort Assets
+  
+select.form-control#sort-select style="width: 150px; margin: 0 20px;"
+  option(value='' selected=(@sort_order == ''))
+  option(value='newest_first' selected=(@sort_order == 'newest_first')) Newest first
+  option(value='oldest_first' selected=(@sort_order == 'oldest_first')) Oldest first
+  option(value='by_title' selected=(@sort_order == 'by_title')) By title
+  option(value='by_filename' selected=(@sort_order == 'by_filename')) By filename

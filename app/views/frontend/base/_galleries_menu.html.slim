@@ -1,0 +1,7 @@
+ul.dropdown-menu#gallery-list
+  = navigation_link_to "Home", galleries_path
+  - current_account.galleries.visible.each do |gallery|
+    = navigation_link_to gallery.name, gallery_path(gallery), \
+      data: { id: gallery.id, \
+        "password-required" => !gallery.password_authorized?(media_authorization_token)\
+      }

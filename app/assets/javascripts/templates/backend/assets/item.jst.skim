@@ -1,0 +1,74 @@
+.panel.panel-default
+  .panel-body
+    .row.asset-preview
+      - if @processed && (@is_video || @is_image)
+        a href="#!assets/#{@id}"
+          img src="#{@thumb_url}" width="220"
+      - else if !@processed && (@is_video || @is_tiff)
+        .processing.text-center
+          span.glyphicon.glyphicon-refresh
+      - else if !@processed && @is_image
+        img src="#{@file_url}" width="220"
+      - else
+        .document-block.text-center
+          - if !!@thumb_url
+            a href="#!assets/#{@id}"
+              img src="#{@thumb_url}" width="220"
+          - else if @is_pdf
+            a href="#!assets/#{@id}"
+              - if @icon_type
+                img.filetype-icon src="/icons/file_types/#{@icon_type}.png"
+              - else
+                span.glyphicon.glyphicon-file
+          - else
+            a href="#{@file_url}"
+              - if @icon_type
+                img.filetype-icon src="/icons/file_types/#{@icon_type}.png"
+              - else
+                span.glyphicon.glyphicon-file
+    .asset-details.row.with-title.with-description
+      .asset-title
+        =' @title
+        - if @is_video && !@processed
+          span.label.label-info Processing
+        - if @is_image && !@processed
+          span.label.label-info Preparing Thumbnails
+      .asset-description
+        == @description
+    .row
+      - if @has_preview
+        - if @processed
+          a.btn.btn-primary.pull-left href="#!assets/#{@id}" View
+      - else
+        a.btn.btn-primary.pull-left href="#{@file_url}" Download
+
+      .dropdown.pull-right
+        .btn data-toggle="dropdown"
+          span.glyphicon.glyphicon-cog
+        ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"
+          - if @is_video && @processed
+            li
+              a href="#{@file_url}"
+                span.glyphicon.glyphicon-download-alt
+                |  Download
+            li
+              a href="#!assets/#{@id}/quicklink"
+                span.glyphicon.glyphicon-share
+                |  Quick Link
+            li
+              a href="#!assets/#{@id}/analytics"
+                span.glyphicon.glyphicon-dashboard
+                |  Analytics
+            - if @is_video
+              li
+                a href="#!assets/#{@id}/embedding"
+                  span.glyphicon.glyphicon-film
+                  |  Embedding
+          li
+            a href="#!assets/#{@id}/edit"
+              span.glyphicon.glyphicon-pencil
+              |  Edit
+          li
+            a.delete href="#"
+              span.glyphicon.glyphicon-trash
+              |  Delete

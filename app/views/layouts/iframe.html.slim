@@ -1,0 +1,10 @@
+doctype html
+= conditional_html do
+  head
+    title= configatron.app_name
+    = javascript_include_tag "//jwpsrv.com/library/ZZxAqPoYEeKnJBIxOUCPzg.js"
+    = stylesheet_link_tag "iframe"
+    = content_for(:facebook_meta)
+  body
+    = yield
+    

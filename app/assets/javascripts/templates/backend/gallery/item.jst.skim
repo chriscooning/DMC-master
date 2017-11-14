@@ -1,0 +1,21 @@
+td
+  span.btn.btn-link.glyphicon.glyphicon-resize-vertical
+  a.btn.btn-link href="#{@url}" #{@name}
+td
+  .btn-group.pull-right
+    - if @editable
+      - if @show_first
+        a.btn.btn-success.toggle-first data-id=#{ @id } data-action='toggle-first'
+          span.glyphicon.glyphicon-star
+          | First Gallery
+      - else
+        a.btn.btn-primary.toggle-first data-id=#{ @id } data-action='toggle-first'
+          span.glyphicon.glyphicon-star-empty
+          | Make First
+      button.btn.btn-warning.edit
+        span.glyphicon.glyphicon-pencil
+        |  Edit
+    - if @destroyable
+      button.btn.btn-danger.delete
+        span.glyphicon.glyphicon-ban-circle
+        |  Delete

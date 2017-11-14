@@ -1,0 +1,14 @@
+- for file in @files
+  tr.fade.template-download data-id='#{ file.id }'
+    td
+      span.preview
+    td
+      p.name = file.file_file_name
+      small = file.title
+    td
+      p.size = @formatFileSize(file.file_file_size)
+    td
+      .btn-group
+        button.btn.btn-danger.delete data-url="/assets/#{file.id}"
+          i.glyphicon.glyphicon-ban-circle
+          span  Delete

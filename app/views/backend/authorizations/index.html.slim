@@ -1,0 +1,28 @@
+#authorizations-list.regular-content
+  .page-header
+    h1 Authorization Requests List
+  .table-responsive
+    table.table.table-striped
+      thead
+        tr
+          th Media
+          th Access For
+          th Requested At
+          th Status
+          th Actions
+      tbody
+        - @authorizations.each do |auth|
+          tr
+            td = link_to auth.media_user.name, media_account_path(auth.media_user)
+            td = link_to auth.target_name, auth.target_path
+            td = auth.created_at_display
+            td = auth.status.capitalize
+            td
+              .btn-group
+                -if auth.pending?
+                  = link_to "Approve", approve_authorization_path(auth), class: 'btn btn-success', method: 'POST'
+                  = link_to "Decline", decline_authorization_path(auth), class: 'btn btn-danger', method: 'POST'
+                - elsif auth.approved?
+                  = link_to "Decline", decline_authorization_path(auth), class: 'btn btn-danger', method: 'POST'
+                - elsif auth.declined?
+                  = link_to "Approve", approve_authorization_path(auth), class: 'btn btn-success', method: 'POST'

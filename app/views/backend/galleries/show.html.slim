@@ -1,0 +1,15 @@
+= render 'shared/galleries/show', infinite_pagination: false
+
+javascript:
+  $(function(){
+    window.myGalleries = #{ raw @my_galleries.as_json };
+    window.gallery = #{ raw @gallery.to_json };
+  })
+coffee:
+  $ ->
+    Backbone.history.stop()
+    window.DMC.route = new DMC.Routers.Backend.Folder(collection: window.DMC.collection, gallery: window.gallery)
+    foldersView = new DMC.Views.Backend.Folder.List(collection: window.DMC.collection).render()
+    Backbone.history.start()
+    if !(/search/.test(Backbone.history.fragment))
+      window.DMC.route.showFirstFolder()

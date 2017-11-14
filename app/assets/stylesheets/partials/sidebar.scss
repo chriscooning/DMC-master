@@ -1,0 +1,121 @@
+/*
+ * Side navigation
+ */
+
+.navbar-toggle {
+  margin-left: 9px;
+  margin-right: 9px;
+}
+
+#sidebar-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 52px;
+  bottom: 0;
+  font-size: 20px;
+  line-height: 20px;
+  z-index: 10;
+  min-height: 364px;
+  @include transition((width) (.1s) (linear));
+  .glyphicon {
+    float: left;
+  }
+  .hide-text {
+    font-size: 14px;
+    margin: 2px 0 0 35px;
+    vertical-align: top;
+    white-space: nowrap;
+    display: block;
+    opacity: 0;
+  }
+  .sidemenu {
+    border: 0;
+    width: 52px;
+    overflow: hidden;
+    li {
+      width: 170px;
+      border: 0;
+      overflow: hidden;
+      -webkit-transition: all 200ms cubic-bezier(0.605, 0.205, 0.815, 0.670); 
+      -moz-transition: all 200ms cubic-bezier(0.605, 0.205, 0.815, 0.670); 
+      -o-transition: all 200ms cubic-bezier(0.605, 0.205, 0.815, 0.670); 
+      transition: all 200ms cubic-bezier(0.605, 0.205, 0.815, 0.670); /* custom */
+
+      -webkit-transition-timing-function: cubic-bezier(0.605, 0.205, 0.815, 0.670); 
+      -moz-transition-timing-function: cubic-bezier(0.605, 0.205, 0.815, 0.670); 
+      -o-transition-timing-function: cubic-bezier(0.605, 0.205, 0.815, 0.670); 
+      transition-timing-function: cubic-bezier(0.605, 0.205, 0.815, 0.670); /* custom */
+      a {
+        font-size:16px;
+        font-family: "proxima-nova-alt", "helvetica neue", sans-serif;
+        letter-spacing: 1px;
+        overflow: hidden;
+        color: #fff;
+        border: 0;
+        cursor: pointer;
+        border-radius: 0;
+        &:hover {
+          background-color: #6F6F6F;
+        }
+        &.active .glyphicon {
+          background-color: transparent;
+          color:#fff;
+          -webkit-transition: all 150ms cubic-bezier(0.400, 0.145, 0.815, 0.670); 
+          -moz-transition: all 150ms cubic-bezier(0.400, 0.145, 0.815, 0.670); 
+          -o-transition: all 150ms cubic-bezier(0.400, 0.145, 0.815, 0.670); 
+          transition: all 150ms cubic-bezier(0.400, 0.145, 0.815, 0.670); /* custom */
+        }
+        &:hover .glyphicon {
+          color:#fff;
+          -webkit-transition: all 150ms cubic-bezier(0.400, 0.145, 0.815, 0.670); 
+          -moz-transition: all 150ms cubic-bezier(0.400, 0.145, 0.815, 0.670); 
+          -o-transition: all 150ms cubic-bezier(0.400, 0.145, 0.815, 0.670); 
+          transition: all 150ms cubic-bezier(0.400, 0.145, 0.815, 0.670); /* custom */
+        }
+        .glyphicon {
+          font-size:20px;
+          color:#6E6E6E;
+        }
+      }
+    }
+  }
+  .overlay-bg {
+    background: #BEBEBE;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 52px;
+  }
+  .nav-two-buttons {
+    margin-top: 10px;
+    border-bottom: 0;
+    text-align: center;
+    .glyphicon {
+      margin-right: 0 !important;
+    }
+  }
+  &:hover {
+    width: 170px;
+    overflow: visible;
+    .hide-text {
+      opacity: 1;
+    }
+    .sidemenu {
+      width: inherit;
+    }
+    .overlay-bg {
+      width: inherit;
+    }
+  }
+}
+
+.navbar-nav.navbar-right:last-child {
+  margin-right: 0;
+  text-align: right;
+}
+
+.nav-stacked > li + li {
+  margin-top:0px;
+}

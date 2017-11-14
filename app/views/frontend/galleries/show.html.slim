@@ -1,0 +1,10 @@
+= render 'shared/galleries/show', infinite_pagination: false
+
+coffee:
+  $ ->
+    Backbone.history.stop()
+    window.DMC.route = new DMC.Routers.Frontend.Folder(collection: window.DMC.collection)
+    foldersView = new DMC.Views.Shared.Folder.List(collection: window.DMC.collection).render()
+    Backbone.history.start()
+    if !(/search/.test(Backbone.history.fragment))
+      window.DMC.route.showFirstFolder()

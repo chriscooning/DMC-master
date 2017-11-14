@@ -1,0 +1,17 @@
+doctype html
+= conditional_html do
+  head
+    title= configatron.app_name
+    = stylesheet_link_tag    "backend"
+    = javascript_include_tag "backend"
+
+    = csrf_meta_tags
+    = render 'layouts/head'
+  body
+    = render "layouts/header"
+    .container class=(controller_action_class)
+      = render 'layouts/flashes'
+      #sidebar-left
+        = render partial: 'shared/settings_menu'
+      #container
+        = yield

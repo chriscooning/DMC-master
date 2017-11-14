@@ -1,0 +1,20 @@
+#my-members-new.regular-content
+  .page-header
+    h1 Invite user to your galleries
+  .col-md-8.col-md-offset-2
+    = form_tag invites_path do
+      .form-group
+        label for='inviteEmail' Email
+        input.form-control type='email' name='email'
+      .form-group
+        label Select galleries
+        select.form-control multiple="true" name='gallery_ids[]' 
+          - @galleries.each do |gallery|
+            option value=(gallery.id) = gallery.name
+      .form-group
+        label Select role
+        select.form-control name='role'
+          option value='admin' Admin
+          option value='viewer' Viewer
+      .form-group
+        button.btn.btn-primary type='submit' Invite user

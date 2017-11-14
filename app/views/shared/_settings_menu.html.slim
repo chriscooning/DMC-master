@@ -1,0 +1,32 @@
+- if backend? && user_signed_in?
+  .overlay-bg
+  ul.nav.nav-tabs.nav-stacked.sidemenu
+    /- if accessor.can_create_assets?
+      /li
+        /= link_to '#!uploader', class: 'uploader-link' do
+          /.glyphicon.glyphicon-cloud-upload
+          /span.hide-text Upload Media
+    /li
+      /= link_to "http://#{base_url}", target: :blank do
+        /.glyphicon.glyphicon-new-window
+        /span.hide-text View Media
+    = navigation_link_to dashboard_path do
+      span.glyphicon.glyphicon-picture
+      span.hide-text Galleries
+    - if accessor.can_view_analytics?
+      = navigation_link_to analytics_settings_path do
+        span.glyphicon.glyphicon-stats
+        span.hide-text Analytics
+    - if accessor.can_view_account?
+      = navigation_link_to account_settings_path do
+        span.glyphicon.glyphicon-wrench
+        span.hide-text Customize
+    /- if accessor.can_edit_security?
+      = navigation_link_to security_settings_path do
+        span.glyphicon.glyphicon-lock
+        span.hide-text Security
+    - if accessor.can_view_subaccounts?
+      = navigation_link_to account_users_path do
+        span.glyphicon.glyphicon-user
+        span.hide-text Members
+    = content_for(:settings_menu)

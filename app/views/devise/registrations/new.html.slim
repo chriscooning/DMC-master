@@ -1,0 +1,14 @@
+article.well.col-md-offset-3.col-sm-6
+  h2 Sign up
+
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true) do |f|
+    = f.input :invitation_hash, as: :hidden
+    = f.input :full_name, required: true, autofocus: true
+    = f.input :email, required: true
+    = f.input :subdomain, required: true
+    = f.input :password, required: true
+    = f.input :password_confirmation, required: true
+
+    = f.button :submit, 'Sign up'
+
+  = render 'devise/shared/links'

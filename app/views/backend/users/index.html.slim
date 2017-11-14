@@ -1,0 +1,44 @@
+#account-users-index.regular-content
+  .page-header
+    h1
+      ' Members
+  .btn-group
+    - if accessor.can_edit_subaccounts?
+      = link_to "Add member", new_account_user_path, class: 'btn btn-lg btn-success'
+    - if accessor.can_view_subaccounts?
+      = link_to "Manage Roles", account_roles_path, class: 'btn btn-lg btn-primary'
+      = link_to "Export to CSV", csv_export_account_users_path, class: 'btn btn-lg btn-success'
+  .pull-right
+    = simple_form_for :search, url: account_users_path, method: :get do |f|
+      = f.input :query, required: false, label: false, placeholder: "Search", input_html: { value: params[:search].try(:[], :query) }
+  - if @users.blank?
+    br
+    ' This account does not have any members.
+  - else
+    .table-responsive
+      table#sub-users-list.table.table-striped.sortable
+        thead
+          tr
+            th data-defaultsign='AZ' Name
+            th data-defaultsign='AZ' Organization
+            th data-defaultsign='AZ' Location
+            th data-defaultsign='AZ' Role
+            th data-defaultsign='AZ' Last sign in at
+            th data-defaultsort='disabled'
+        tbody
+          - @users.each do |user|
+            tr
+              td = "#{ user.full_name } ( #{ user.email } )"
+              td = user.organization
+              td = user.location
+              td = user.role_name
+              td = user.last_login_at
+              td
+                - if accessor.can_edit_subaccounts?
+                  .btn-group
+                    = link_to 'Edit', edit_account_user_path(user), class: 'btn btn-primary'
+                    = link_to user.invited? ? 'Delete' : 'Disable membership', account_user_path(user), class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, method: :delete
+
+
+  .pagination
+    = paginate @users, params: { controller: 'users', action: 'index' }

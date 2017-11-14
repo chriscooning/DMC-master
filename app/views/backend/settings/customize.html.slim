@@ -1,0 +1,60 @@
+= simple_form_for @account, as: :account, url: account_path do |f|
+  .regular-content
+    .page-header
+      h1 Customization Settings
+
+    ul.nav.nav-tabs.settings-tabs
+      li.active = link_to 'Page settings', '#page', :'data-toggle' => "tab", class: ''
+      li = link_to 'Portal', '#portal', :'data-toggle' => "tab"
+      li = link_to 'Theme', '#theme', :'data-toggle' => "tab"
+
+    .tab-content
+      #page.tab-pane.active
+        .col-md-8
+          = f.input :logo_text
+          = f.input :logo
+          - if @account.logo_file_name.present?
+            h4 Current logo
+            = image_tag @account.logo.url, height: 50
+            = f.input :delete_logo, as: :boolean, unchecked_value: '', wrapper: :inline_checkbox
+          = f.input :logo_url
+          h3 Custom messages
+          = f.input :restrictions_message
+          = f.input :copyrights
+          = f.input :allow_subdomain_indexing
+        .col-md-8 = f.button :submit, "Apply Changes", class: 'btn btn-primary'
+
+      #portal.tab-pane
+        .col-md-8
+          = f.input :landing_title
+          = f.input :welcome_message
+          = f.input :portal_header_image
+          - if @account.portal_header_image?
+            h4 Current portal image
+            = image_tag @account.portal_header_image.url(:thumb)
+            = f.input :delete_portal_header_image, as: :boolean, unchecked_value: '', wrapper: :inline_checkbox
+        .col-md-8 = f.button :submit, "Apply Changes",  class: 'btn btn-primary'
+        .col-md-8
+          h1
+            ' Announcements
+            .pull-right = link_to "Add Announcement", new_announcement_path, class: 'btn btn-success'
+          #announcements-list
+            = render 'backend/announcements/list', announcements: @announcements
+
+      #theme.tab-pane
+        .col-md-6
+          p.help-block To use default value, leave field empty
+          = f.simple_fields_for :theme, OpenStruct.new(@account.theme) do |ff|
+            = ff.input :nav_bg_color, input_html: { class: 'colorpicker' }
+            = ff.input :nav_link_color, input_html: { class: 'colorpicker' }
+            = ff.input :body_bg_color, input_html: { class: 'colorpicker' }
+            = ff.input :body_font_color, input_html: { class: 'colorpicker' }
+            = ff.input :body_link_color, input_html: { class: 'colorpicker' }
+            = ff.input :button_color, input_html: { class: 'colorpicker' }
+            = ff.input :button_font_color, input_html: { class: 'colorpicker' } 
+            = ff.input :thumbnail_tile_background_color, input_html: { class: 'colorpicker' }
+            = ff.input :dropdown_link_color, input_html: { class: 'colorpicker' }
+            = ff.input :dropdown_link_color_active, input_html: { class: 'colorpicker' }
+            = ff.input :dropdown_bg_link_color_active, input_html: { class: 'colorpicker' } 
+            = ff.input :dropdown_toggle_open_bg_color, input_html: { class: 'colorpicker' }
+        .col-md-8 = f.button :submit, "Apply Changes", class: 'btn btn-primary'

@@ -1,0 +1,12 @@
+= semantic_form_for [:admin, @blog_post] do |f|
+  = f.inputs do
+    = f.input :title
+    = f.input :image, as: :file
+    - if @blog_post.image?
+      li
+        label Current Image
+        = image_tag @blog_post.image.url(:small)
+      = f.input :delete_image, as: :boolean
+    = f.input :text, input_html: { class: 'redactor' }
+    = f.input :publish_at, as: :string, input_html: { class: 'pickdate', value: @blog_post.publish_at || DateTime.now }
+  = f.submit

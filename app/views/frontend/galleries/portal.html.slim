@@ -1,0 +1,28 @@
+#user-portal
+  - if current_account.landing_title.present?
+    h1 = current_account.landing_title
+  - if current_account.portal_header_image?
+    .portal-header-image = image_tag current_account.portal_header_image.url(:default), class: 'img-responsive'
+  .row  
+    .col-md-6
+      h1 Galleries
+      - if @galleries.any?
+        - if @galleries.first.featured?
+          .img-responsive = image_tag @galleries.first.featured_image.url(:default)
+        table.table.table-striped
+          - @galleries.each do |gallery|
+            tr
+              td = link_to gallery.name, gallery_path(gallery), \
+                data: { id: gallery.id, \
+                  "password-required" => !gallery.password_authorized?(media_authorization_token)\
+                }
+
+    .col-md-6
+      - if current_account.welcome_message.present?
+        h3 Welcome Message
+        .well
+          = current_account.welcome_message
+      - if @announcements.any?
+        .announcements.row
+          h3 Announcements
+          #announcements-block = render "frontend/announcements/list"

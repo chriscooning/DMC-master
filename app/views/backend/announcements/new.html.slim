@@ -1,0 +1,8 @@
+#announcements-new.regular-content
+  .page-header
+    h1 Create Announcement
+  .col-md-8
+    = simple_form_for @announcement do |f|
+      = f.input :title
+      = f.input :text
+      = f.submit class: 'btn btn-success'

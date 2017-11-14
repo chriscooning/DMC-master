@@ -1,0 +1,20 @@
+#events-index.regular-content
+  .page-header
+    h1 Event Tracker
+  .table-responsive
+    table.table.table-striped
+      tr
+        th Asset
+        th Gallery
+        th Folder
+        - Event::EVENT_NAMES.each do |event|
+          th = t("events.counts.#{event}")
+      - @assets.each do |asset|
+        tr
+          td = asset.title
+          td = asset.gallery_name || "Deleted"
+          td = asset.folder_name || "Deleted ##{asset.folder_id}"
+          - Event::EVENT_NAMES.each do |event|
+            td = asset.send(:"events_#{event}_count")
+
+  #pagination = paginate @assets

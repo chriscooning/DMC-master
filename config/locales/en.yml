@@ -1,0 +1,92 @@
+en:
+  active_admin:
+    delete_prompt:
+      "Are you sure you want to delete %{resource_type} '%{resource_name}'? \n Type DELETE to confirm."
+  time:
+    formats:
+      display: "%B %d, %Y %I:%M %p"
+      shortened: "%B %d, %Y"
+  api:
+    errors:
+      common:
+        params_required:  "Please specify parameters: %{param_names}"
+        not_found: "%{model_name} not found"
+      folders:
+        no_gallery_id: "Please specify gallery id"
+        not_found: "Gallery with this id doesn't exist"
+      assets:
+        no_gallery_id: "Please specify gallery id"
+        no_folder_id: "Please specify folder id"
+        not_found: "Asset with this id doesn't exist"
+        quicklink_expired: "quicklink expired"
+        quicklink_invalid: "quicklink invalid"
+  events:
+    counts:
+      modal_opened: 'Video Preview Window Opens'
+      download: 'Downloads'
+  alerts:
+    invite_authorization: "Only invited users can access this gallery <a href='%{link}'>Didn't receive or lost your invite?</a>"
+    password_expired: "Password update required. please, change password."
+    password_not_changed: "New password should not be the same as old."
+    not_authorized:
+      page: "Sorry, you don't authorized to access this page"
+      action: "Sorry, you don't authorized to access this action"
+  meta:
+    landing:
+      description: "Digital Media Center is a cloud based asset management system. Optimized for video, users can manage content galleries, embed HD videos, and track viewership."
+  simple_form:
+    labels:
+      account:
+        logo_text: "Select text to be placed instead of logo"
+        subdomain: "Username"
+      theme:
+        nav_bg_color: "Navigation bar background color"
+        nav_link_color: "Navigation links color"
+        body_bg_color: "Body background color"
+        body_font_color: "Body font color"
+        body_link_color: "Body links color"
+        button_color: "Button color"
+        button_font_color: "Button font color"
+        thumbnail_tile_background_color: "Asset tile background color"
+        nav_bg_color: "Navigation bar background color"
+        nav_link_color: "Navigation link color"
+        dropdown_link_color: "Navigation dropdown link color"
+        dropdown_link_color_active: "Navigation dropdown link color active"
+        dropdown_bg_link_color_active: "Navigation dropdown link background color active"
+        dropdown_toggle_open_bg_color: "navigation dropdown toggle open background color"
+      user:
+        subdomain: "Username"
+    placeholders:
+      gallery:
+        menu_links:
+          link: "Url"
+          content: "Link text"
+    hints:
+      account:
+        password: "leave blank if you don't want to change it"
+        logo_url: "Choose the url users will be sent to if they click your logo - leave blank for no link"
+        portal_header_image: "Please upload image 1140 x 340 px"
+      gallery:
+        featured: "Feature this gallery on portal - featured image required"
+        featured_image: "Please upload image 540 x 300"
+
+  csv:
+    export:
+      event_analytics:
+        id: "ID"
+        title: "Asset Title"
+        gallery_name: "Gallery Name"
+        events_download_count: "Downloads"
+      download_analytics:
+        target_title: "Asset Title"
+        file_file_name: "File name"
+        created_at_display: "Last downloaded at"
+        total_count: "Total download count"
+      members:
+        full_name: "Name"
+        email: "Email"
+        organization: "Organization"
+        location: "Location"
+        role_name: "Role"
+        last_login_at: "Last Login"
+        state: "State"

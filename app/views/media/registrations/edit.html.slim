@@ -1,0 +1,11 @@
+article.wrap.col-md-offset-3.col-sm-6
+  h2 Edit media account
+
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true) do |f|
+    = f.input :name, required: true, autofocus: true
+    = f.input :phone, required: true
+    = f.input :email, required: true
+    = f.input :password
+    = f.input :password_confirmation
+    = f.input :outlet, required: true
+    = f.button :submit, 'Update Account'

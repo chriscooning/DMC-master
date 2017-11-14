@@ -1,0 +1,20 @@
+#gallery-index
+  h1 List of galleries
+  table#gallery-list.table.table-striped
+    thead
+      tr
+        th Name
+    tbody
+      - if @galleries.any?
+        - @galleries.each do |gallery|
+          tr
+            td = link_to gallery.name, gallery_path(gallery), \
+              data: { id: gallery.id, \
+                "password-required" => !gallery.password_authorized?(media_authorization_token)\
+              }
+      - else
+        = render 'no_items'
+
+- if (gallery_id = params[:ask_password_for]).present?
+  javascript:
+    window.ask_password_for = #{{ gallery_id }};

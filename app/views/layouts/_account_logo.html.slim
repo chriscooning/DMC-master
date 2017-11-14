@@ -1,0 +1,12 @@
+- if current_account.logo_url.present?
+  = link_to current_account.logo_url, class: "navbar-brand hidden-xs #{'with-image' if current_account.logo?}", target: '_blank' do
+    - if current_account.logo?
+      = image_tag current_account.logo.url + "#{rand(0...999)}"
+    - else
+      = current_account.logo_text.present? ? current_account.logo_text : current_account.name
+- else
+  = link_to root_url, class: "navbar-brand hidden-xs #{'with-image' if current_account.logo_file_name.present?}" do
+    - if current_account.logo_file_name.present?
+      = image_tag current_account.logo.url + "#{rand(0...999)}", height: current_account.logo_height, width: current_account.logo_width
+    - else
+      = current_account.logo_text.present? ? current_account.logo_text : current_account.name

@@ -1,0 +1,1 @@
+configatron.aws.enabled = false

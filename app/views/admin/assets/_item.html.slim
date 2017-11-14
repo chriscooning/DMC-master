@@ -1,0 +1,14 @@
+- if resource.video?
+  #video-container
+  javascript:
+    jwplayer("video-container").setup({
+      file: "#{resource.file.url}"
+    })
+        
+- elsif resource.image?
+  - if resource.processed?
+    = image_tag resource.medium_url
+  - else
+    = image_tag resource.file.url, width: 300
+- elsif resource.document?
+  = link_to "Download image", resource.file.url

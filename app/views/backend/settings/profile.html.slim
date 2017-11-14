@@ -1,0 +1,33 @@
+= simple_form_for @user, as: :user, url: profile_path do |f|
+  .regular-content
+    .page-header
+      h1 My Profile
+
+    ul.nav.nav-tabs.settings-tabs
+      li.active = link_to 'Settings', '#settings', data: { toggle: "tab" }, class: ''
+      //li = link_to 'Billing', '#billing', data: { toggle: "tab" }
+      //li = link_to 'Bandiwidth & Storage', '#bandiwidth', data: { toggle: "tab" }
+
+    .tab-content
+      #settings.tab-pane.active
+        .col-md-8
+          = f.input :email
+          = f.input :full_name
+          = f.input :password
+          = f.input :password_confirmation
+        .col-md-8 = f.button :submit, "Apply Changes", class: 'btn btn-primary'
+
+        - token = current_user.authentication_token
+        .no-auth-code.col-md-8
+          a#retrieve-auth-code-btn class='btn btn-primary' data={ url: retrieve_auth_token_account_path }
+            = token.blank? ? 'Generate API Key' : 'Regenerate API Key'
+        div[class="has-auth-code col-md-8 #{token.blank? ? 'hidden' : ''}"]
+          span.auth-token-label Your API key:
+          h3.auth-token = current_user.authentication_token
+
+      //#billing.tab-pane.active
+        //.col-md-8.col-md-offset-2 Comming soon ...
+      //#bandwidth.tab-pane.active
+        //.col-md-8.col-md-offset-2 Comming soon ...
+  coffee:
+    window.initRetrieveAuthTokenButton()

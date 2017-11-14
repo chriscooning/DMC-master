@@ -1,0 +1,15 @@
+var output_url = <%= output_root %>
+var filename = <%= video_title %>
+
+set source = <%= video_url %>
+set webhook = <%= robot_ping_url %> 
+
+-> mp4_360p = $output_url/videos/<%= video_id %>/converted/mp4_360p/$filename.mp4
+
+-> jpg_550x = $output_url/videos/<%= video_id %>/previews/medium/$filename_#num#.jpg
+
+-> mp4_720p = $output_url/videos/<%= video_id %>/converted/mp4_720p/$filename.mp4
+
+-> jpg_1160x = $output_url/videos/<%= video_id %>/previews/large/$filename_#num#.jpg
+
+-> hls = $output_url/videos/<%= video_id %>/hls/$filename.m3u8, variants=hls_360p_1000k,hls_480p_1500k,hls_720p

@@ -1,0 +1,14 @@
+#my-membership-index.regular-content
+  .page-header
+    h1 My invites to galleries
+  .table-responsive
+    table.table.table-striped
+      tr
+        th User
+        th Gallery
+        th Role
+      - @invites.each do |invite|
+        tr
+          td = invite.user_name
+          td = link_to invite.gallery_name, subdomain_gallery_path(invite.owner_subdomain, invite.gallery_id)
+          td = invite.role

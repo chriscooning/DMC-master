@@ -1,0 +1,46 @@
+#account-roles-index.regular-content
+  .page-header
+    h1
+      .pull-right
+        = link_to "Return to accounts", account_users_path, class: 'btn btn-link'
+        '  
+        = link_to "Add Role", new_account_role_path, class: 'btn btn-primary'
+      ' Manage Roles
+
+  - if @roles.blank?
+    ' No members found
+  - else
+    .table-responsive
+      table#roles-list.table.table-striped
+        thead
+          tr
+            th Name
+            th Permissions
+            th Assigned to users
+            th
+        tbody
+          - @roles.each do |role|
+            tr
+              td = role.name
+              td 
+                - if role.permissions.blank?
+                  ' No permissions exist
+                - else
+                  ul
+                    - role.permissions.each do |permission|
+                      li = permission.full_description.capitalize
+              td
+                - if role.users.blank?
+                  ' Role not assigned
+                - else
+                  ul
+                    - role.users.each do |user|
+                      li = "#{user.full_name} ( #{ user.email } )"
+              td.text-right
+                - if accessor.can_edit_subaccounts?
+                  .btn-group
+                    = link_to 'Edit', edit_account_role_path(role), class: 'btn btn-primary'
+                    '  
+                    = link_to 'Delete', account_role_path(role), class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, method: :delete
+  .pagination
+    = paginate @roles, params: { controller: 'roles', action: 'index' }

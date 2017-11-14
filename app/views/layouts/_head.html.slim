@@ -1,0 +1,19 @@
+meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"
+meta name="google-site-verification" content="#{configatron.google.site_verification}"
+- if landing?
+  meta name="description" content=(t("meta.landing.description"))
+
+- if backend?
+  javascript:
+    window.maximumMenuLinks = #{ configatron.maximum_counts.menu_links };
+    window.awsKey = '#{ configatron.aws.access_key }';
+    window.awsBucket = '#{ configatron.aws.bucket }';
+    //window.subdomain = "#{ current_account.try(:subdomain) }";
+    window.subdomain = "";
+    window.baseUrl = "#{ base_url }";
+  
+/[if lt IE 9]
+  = javascript_include_tag 'html5.js'
+
+/[if IE]
+  = stylesheet_link_tag 'ie'

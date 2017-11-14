@@ -1,0 +1,10 @@
+- @announcements.each do |announcement|
+  .announcement
+    h4 = announcement.title
+    .text = announcement.text
+    .date = I18n.l(announcement.created_at, format: :display)
+.pagination 
+  =' link_to_previous_page @announcements, "Newer", remote: true, class: 'btn btn-primary', \
+    params: { controller: 'announcements', action: 'index', format: :js }
+  = link_to_next_page @announcements, "Older", remote: true, class: 'btn btn-primary', \
+    params: { controller: 'announcements', action: 'index', format: :js }

@@ -1,0 +1,29 @@
+table.table.table-striped
+  tr
+    th Asset
+    th Thumbnail
+    th Gallery
+    th Folder
+    - Event::EVENT_NAMES.each do |event|
+      th = t("events.counts.#{event}")
+  - assets.each do |asset|
+    tr
+      td = asset.title
+      td
+        - if asset.document?
+          span.glyphicon.glyphicon-file
+        - else
+          = link_to "#!/events/#{asset.id}" do
+            = image_tag(asset.thumb_url, width: 100)
+      td = asset.gallery_name || "Deleted"
+      td = asset.folder_name || "Deleted ##{asset.folder_id}"
+      - Event::EVENT_NAMES.each do |event|
+        td = asset.send(:"events_#{event}_count")
+
+= render 'shared/pagination', resource: assets, controller: 'events', action: 'index'
+
+javascript:
+  window.events_collection = new DMC.Collections.PreviewAssets(#{ raw assets.to_json });
+  if(window.DMC.route) {
+    window.DMC.route.events_collection = events_collection;
+  }

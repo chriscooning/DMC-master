@@ -1,0 +1,102 @@
+.regular-content 
+  h1 Welcome to the api demo page!
+  p You can use our api to create invites for your customers !
+  p Try it out with our #{ link_to "API console", api_console_path }!
+  #accordion.panel-group
+    .panel.panel-default
+      .panel-heading
+        h4.panel-title
+          a data-parent="#accordion" data-toggle="collapse" href="#token"
+            | 1. Generate Token
+      #token.panel-collapse.collapse.in
+        .panel-body
+            | Make a POST request to https://digitalmediacenter.com/api/v1/token.json with your email and password as params
+            pre
+              table.table
+                tr
+                  td POST
+                  td https://digitalmediacenter.com/api/v1/token.json
+                tr
+                  td POST DATA
+                  td = JSON.pretty_generate(email: 'user@email.com', password: "password")
+            | You will get an token in response. Use it with each request for authentiation.
+            pre = JSON.pretty_generate(token: "f8fe7d1e477a89efd5f778f462619e1a")
+    .panel.panel-default
+      .panel-heading
+        h4.panel-title
+          a data-parent="#accordion" data-toggle="collapse" href="#user-token"
+            | 2. Receive temporary user token
+      #user-token.panel-collapse.collapse
+        .panel-body
+          | To get currently active user token make a POST request to https://digitalmediacenter.com/api/v1/user_token.json
+          br
+          | Do not forget to pass authentication token
+          br
+          | Security: using temporary token is preferable over general token
+          pre
+            table.table
+              tr
+                td POST
+                td https://digitalmediacenter.com/api/v1/user_token.json?user_token=f8fe7d1e477a89efd5f778f462619e1a
+          | You will get an user token in response. Use it with each request for authentication.
+          pre = JSON.pretty_generate(token: 'your_token', expire_at: 'timestamp_in_one_hour_from_now')
+    .panel.panel-default
+      .panel-heading
+        h4.panel-title
+          a data-parent="#accordion" data-toggle="collapse" href="#list"
+            | 3. List all galleries
+      #list.panel-collapse.collapse
+        .panel-body
+          | To get list of all galleries make a GET request to https://digitalmediacenter.com/api/v1/galleries.json
+          br
+          | Do not forget to pass authentication token
+          pre
+            table.table
+              tr
+                td GET
+                td https://digitalmediacenter.com/api/v1/galleries.json?user_token=f8fe7d1e477a89efd5f778f462619e1a
+          | You will get an array of all your galleries
+          pre = JSON.pretty_generate([{ id: '1', name: 'First' }, { id: 2, name: 'Second' }, { id: 3, name: 'Third' }])
+    .panel.panel-default
+      .panel-heading
+        h4.panel-title
+          a data-parent="#accordion" data-toggle="collapse" href="#invites"
+            | 4. Create invitations
+      #invites.panel-collapse.collapse
+        .panel-body
+          | To create invitation make a POST request to https://digitalmediacenter.com/api/v1/invites.json with customer email and an array of galleries ids.
+          br
+          | Do not forget to pass authentication token
+          pre
+            table.table
+              tr
+                td POST
+                td https://digitalmediacenter.com/api/v1/invites.json
+              tr
+                td POST DATA
+                td = JSON.pretty_generate(email: 'customer@email.com', user_token: "f8fe7d1e477a89efd5f778f462619e1a", gallery_ids: [1,3])
+          br
+          | Response will content array of invitation link
+          pre = JSON.pretty_generate([{ gallery_id: 1, link: "http://user.digitalmediacenter.com/galleries/1?invitation_hash=5ce1bb8163b385ba56cc584afc0eca09" }, { gallery_id: 3, link: "http://user.digitalmediacenter.com/galleries/1?invitation_hash=233e04de2367c53c78b03026549ffb40"}])
+
+    .panel.panel-default
+      .panel-heading
+        h4.panel-title
+          a data-parent="#accordion" data-toggle="collapse" href="#withdraw"
+            | 5. Withdraw invitations
+      #withdraw.panel-collapse.collapse
+        .panel-body
+          | To withdraw invitation from all your galleries make a DELETE request to https://digitalmediacenter.com/api/v1/invites/destroy.json with customer email.
+          br
+          | Or pass galleries ids to withdrow invitations from selected galleries.
+          br
+          | Do not forget to pass authentication token
+          pre
+            table.table
+              tr
+                td DELETE
+                td https://digitalmediacenter.com/api/v1/invites/destroy.json
+              tr
+                td DELETE DATA
+                td = JSON.pretty_generate(email: 'old_customer@email.com', user_token: "f8fe7d1e477a89efd5f778f462619e1a", gallery_ids: [1])
+  .push-block

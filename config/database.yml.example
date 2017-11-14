@@ -1,0 +1,20 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: utf8
+  database: dmc_new
+  host: 127.0.0.1
+
+development:
+  <<: *defaults
+
+staging:
+  <<: *defaults
+  database: dmc_new_staging
+
+production:
+  <<: *defaults
+  database: dmc_new_production
+
+test:
+  <<: *defaults
+  database: dmc_new_test

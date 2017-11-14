@@ -1,0 +1,12 @@
+@import "active_admin/mixins";
+@import "active_admin/base";
+@import "jquery-ui/all";
+@import "jquery-ui/theme";
+@import "libs/jquery.datetimepicker";
+@import "redactorjs-rails/redactor";
+
+.redactor_box {
+  width: 76%;
+  float: left;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,13 @@
+#blog-index
+  h1 Blog
+  - @blog_posts.each do |blog_post|
+    .row
+      h3 = link_to blog_post.title, blog_post_path(blog_post)
+      .row.blog-text
+        .col-md-2 
+          - if blog_post.image?
+            = image_tag blog_post.image.url(:small)
+        .col-md-10 == blog_post.text
+      .row
+        .publish_at = blog_post.publish_at_display
+  #pagination.text-center = paginate(@blog_posts)

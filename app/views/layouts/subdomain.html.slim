@@ -1,0 +1,27 @@
+doctype html
+= conditional_html do
+  head
+    title= configatron.app_name
+    = stylesheet_link_tag    "application"
+    = stylesheet_link_tag    "//fonts.googleapis.com/css?family=Lato:400,700"
+    = javascript_include_tag "//use.typekit.net/yhu2oru.js"
+    javascript:
+      try{Typekit.load();}catch(e){}
+    /[if lte IE 8]
+      = javascript_include_tag "libs/excanvas"
+    = javascript_include_tag "application"
+    = javascript_include_tag "//jwpsrv.com/library/ZZxAqPoYEeKnJBIxOUCPzg.js"
+    = csrf_meta_tags
+    - if restrict_robot_indexing?
+      meta name="robots" content="noindex,nofollow"
+    = render 'layouts/head'
+  body#body.frontend class=(controller_action_class)
+    = render 'layouts/theme', theme: current_account.theme
+    #content
+      = render "layouts/header"
+      .container class=(controller_action_class)
+        = render 'layouts/flashes'
+        = yield
+    = render 'layouts/footer'
+    - if configatron.google.analytics.enabled
+      = render 'layouts/analytics'

@@ -1,0 +1,18 @@
+#footer-backend
+  .container
+    .col-md-12.text-muted.credit 
+      - if current_account && current_account.copyrights.present?
+        = current_account.copyrights
+      - else
+        | Digital Media Center
+      - if !backend? && current_account.try(:restrictions_message).present?
+        a.pull-right#restrictions href="#" Restrictions
+- if !backend? && current_account.try(:restrictions_message).present?
+  .modal.fade#restrictions-modal
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close data-dismiss="modal" aria-hidden="true" &times;
+          h4.modal-title Restrictions
+        .modal-body
+          = current_account.restrictions_message

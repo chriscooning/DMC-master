@@ -1,0 +1,48 @@
+#my-members-index.regular-content
+  .page-header
+    h1 Invites to my galleries
+  .table-responsove
+    table.table.table-striped
+      tr
+        th User Name
+        th Gallery
+        th Role
+        th Actions
+      - @invites.each do |invite|
+        tr
+          td = invite.user_name
+          td = link_to invite.gallery_name, gallery_path(invite.gallery)
+          td = invite.role
+          td = link_to "Destroy", invite_path(invite), method: :delete, class: 'btn btn-danger'
+  
+  = link_to "+ Invite user", new_invite_path, class: 'btn btn-success'
+
+  - if @admin_invitation_requests.any?
+    .page-header
+      h1 Not registered admins
+    .table-responsive
+      table.table.table-striped
+        tr
+          th Email
+          th Gallery
+          th Actions
+        - @admin_invitation_requests.each do |request|
+          tr
+            td = request.email
+            td = link_to request.gallery.try(:name), gallery_path(request.gallery)
+            td = link_to "Destroy", invitation_request_path(request), method: :delete, class: 'btn btn-danger'
+
+  - if @viewer_invitation_requests.any?
+    .page-header
+      h1 Viewer invitations
+    .table-responsive
+      table.table.table-striped
+        tr
+          th Email
+          th Gallery
+          th Actions
+        - @viewer_invitation_requests.each do |request|
+          tr
+            td = request.email
+            td = link_to request.gallery.try(:name), gallery_path(request.gallery)
+            td = link_to "Destroy", invitation_request_path(request), method: :delete, class: 'btn btn-danger'

@@ -1,0 +1,6 @@
+#announcements-index.regular-content
+  .page-header
+    h1
+      .pull-right = link_to "Add Announcement", new_announcement_path, class: 'btn btn-success'
+      ' Announcements
+  = render 'list', announcements: @announcements

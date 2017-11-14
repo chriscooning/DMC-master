@@ -1,0 +1,14 @@
+.bundle
+db/*.sqlite3
+log/*.log
+log/**/*
+tmp/
+.sass-cache/
+config/database.yml
+config/configatron/developer_specific.rb
+.DS_Store
+public/system/**/*
+coverage/
+.idea
+*.espressostorage
+.use_in_memory_db

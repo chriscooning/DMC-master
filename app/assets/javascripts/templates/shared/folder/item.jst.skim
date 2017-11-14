@@ -1,0 +1,3 @@
+a.btn data-id='#{@id}' href='#!folders/#{@id}'
+  span.glyphicon.glyphicon-cog
+  |  #{@name}

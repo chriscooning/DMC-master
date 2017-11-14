@@ -1,0 +1,34 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import "sweet-alert/sweet-alert.scss";
+
+@import "partials/bootstrap-fixes";
+@import "partials/frontend";
+@import "redactorjs-rails/redactor";
+@import "libs/jquery.tags-input";
+@import "libs/jquery.fileinput";
+@import "jquery-ui/core";
+@import "jquery-ui/theme";
+@import "jquery-ui/datepicker";
+@import "libs/jquery.datetimepicker";
+@import "libs/jscolor";
+@import "libs/animate.min";
+@import "libs/bootstrap-sortable";
+@import "libs/bootstrap3-switch";
+@import "partials/sticky-footer";
+@import "partials/layout";
+@import "partials/forms";
+@import "partials/fonts";
+@import "partials/folders";
+@import "partials/assets";
+@import "partials/home";
+@import "partials/footer";
+@import "partials/portal";
+@import "partials/sidebar";
+@import "partials/console";
+@import "partials/account";
+@import "partials/galleries";
+@import "partials/analytics";
+
+@import "partials/responsive";

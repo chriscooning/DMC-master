@@ -1,0 +1,34 @@
+#asset-quicklink
+  h1.modal-title = @asset.title
+  - if @asset.image?
+    .col-md-12
+      img.img-responsive src="#{@asset.file_url(:large)}"
+  - elsif @asset.video?
+    #clipplayer Loading the player...
+  - else
+    iframe height="500" width="100%" src='http://docs.google.com/viewer?url=#{@asset.file_url}&embedded=true'
+  .asset-description == @asset.description
+  - if @asset.quicklink_downloadable?
+    = link_to "Download", quicklink_download_path(@asset.quicklink_hash), class: "download btn btn-success"
+- if @asset.video?
+  javascript:
+    $(function(){
+      jwplayer("clipplayer").setup({
+        "playlist": [{
+          "image": "#{@asset.thumb_url(:large)}",
+          "sources": [{
+              "file": "#{quicklink_manifest_path(@asset.quicklink_hash)}"
+            },{
+              "file": "#{@asset.m3u8_url}"
+            },{
+              "file": "#{@asset.video_urls[:mp4_360p]}"
+            }
+          ]
+        }],
+        "aspectratio": '16:9',
+        "flashplayer": "/jwplayer.flash.swf",
+        "fallback": "true",
+        "primary": "html5",
+        "width": '100%'
+      })
+    });

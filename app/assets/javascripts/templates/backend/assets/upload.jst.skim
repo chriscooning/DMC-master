@@ -1,0 +1,15 @@
+- for file in @files
+  tr.fade.template-upload
+    td
+      span.preview
+    td
+      p.name = file.name
+    td
+      p.size = @formatFileSize(file.size)
+      .progress.progress-striped.active role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+        .progress-bar.progress-bar-success style="width:0%;"
+    td
+      .btn-group
+        button.btn.btn-warning.cancel
+          i.glyphicon.glyphicon-ban-circle
+          span  Cancel

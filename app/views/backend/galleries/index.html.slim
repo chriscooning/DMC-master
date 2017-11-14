@@ -1,0 +1,25 @@
+#gallery-index
+  .page-header
+    h1 List of #{ current_account.name } galleries
+  .table-responsive
+    table#gallery-list.table.table-striped
+      thead
+        tr
+          th Name
+          th
+      tbody
+  
+- if accessor.can_add_gallery?
+  a.btn.btn-primary href="#!new" Add Gallery
+
+javascript:
+  $(function(){
+    window.DMC.collection = new DMC.Collections.Galleries(#{{ @galleries.to_json }});
+  });
+  
+coffee:
+  $ ->
+    Backbone.history.stop()
+    window.DMC.route = new DMC.Routers.Backend.Gallery(collection: window.DMC.collection)
+    galleriesView = new DMC.Views.Backend.Gallery.List(collection: window.DMC.collection, subdomain: window.subdomain).render()
+    Backbone.history.start()

@@ -1,0 +1,42 @@
+= content_for(:facebook_meta) do
+  meta property='og:type' content='movie'
+
+#player
+
+- if params[:sharing] == 'both'
+  javascript:
+    window.sharing = {
+      link: "#{@asset.sharing_link_url}",
+      code: "#{{ @asset.sharing_code }}"
+    }
+
+- if params[:sharing] == 'email'
+  javascript:
+    window.sharing = {
+      link: "#{@asset.sharing_link_url}"
+    }
+
+javascript:
+  window.onload = function() {
+    jwplayer("player").setup({
+      playlist: [{
+        image: "#{@asset.thumb_url}",
+        sources: [{
+            file: "#{embedded_manifest_path(@asset.embedding_hash)}",
+          },{
+            file: "#{@asset.m3u8_url}"
+          },{
+            file: "#{@asset.video_urls[:mp4_360p]}"
+          }
+        ]
+      }],
+      autostart: "#{params[:autostart]}",
+      stretching: "exactfit",
+      flashplayer: "/jwplayer.flash.swf",
+      primary: "html5",
+      fallback: true,
+      width: '100%',
+      height: '100%',
+      sharing: window.sharing
+    });
+  };

@@ -1,0 +1,44 @@
+.page-header
+  h1 Analytics
+ul.nav.nav-tabs.settings-tabs
+  li.active = link_to 'Events', '#events-index', 'data-toggle' => "tab"
+  li = link_to 'Downloads', '#downloads-list', 'data-toggle' => "tab"
+  li = link_to "Graphs", "#graphs", 'data-toggle' => 'tab', id: 'graph-link'
+.tab-content
+  #events-index.regular-content.tab-pane.active
+    = render 'backend/events/list', assets: @assets
+    p = link_to "Export to CSV", events_csv_report_settings_path, class: 'btn btn-success btn-lg'
+
+  #downloads-list.tab-pane
+    = render 'backend/downloads/list', downloads: @downloads
+    p = link_to "Export to CSV", downloads_csv_report_settings_path, class: 'btn btn-success btn-lg'
+
+  #graphs.tab-pane.graph-block
+    form.form-inline#graphs-filter
+      .form-group
+        label class="sr-only" for="start_date" Start date
+        input.form-control.datetime#from-filter type='text' name='start_date' placeholder='Start date'
+      '
+      .form-group
+        label class="sr-only" for="start_date" Finish date
+        input.form-control.datetime#to-filter type='text' name='end_date' placeholder='Finish date'
+      '
+      button.btn.btn-success.report Report
+      '
+      .form-group
+        label.checkbox-inline
+          input#graph-downloads.graph-types (type='checkbox' checked)
+          ' Show downloads
+
+    #loading
+      h3 Loading ...
+    #graph
+
+
+coffee:
+  $ ->
+    Backbone.history.stop()
+    grapher = new DMC.Views.Backend.Analytics.Grapher(graph: $("#graph"), filter: $("#graphs-filter"), loading: $("#loading"), el: $('.graph-block')).render()
+    $('#graph-link').one 'show.bs.tab', -> grapher.loadAnalytics()
+    window.DMC.route = new DMC.Routers.Backend.Analytics(events_collection: window.events_collection, downloads_collection: window.downloads_collection)
+    Backbone.history.start()

@@ -1,0 +1,25 @@
+#account-users-new.regular-content
+  .page-header
+    h1 Add Member
+
+  .col-md-8.col-md-offset-2
+    = simple_form_for @user.resource, url: account_users_path, html: { autocomplete: 'off' } do |f|
+      = f.input :full_name, required: true, input_html: { autocomplete: 'off' }
+      = f.input :email, required: true, input_html: { autocomplete: 'off' }
+      = f.input :password, required: true, input_html: { autocomplete: 'off' }
+      = f.input :organization, input_html: { autocomplete: 'off' }
+      = f.input :location, input_html: { autocomplete: 'off' }
+      /= f.association :roles, collection: @user.available_roles, as: :check_boxes
+      = f.association :roles, collection: @user.available_roles, as: :select
+
+      = render partial: "backend/roles/permissions", locals: {f: f}
+
+      = f.submit class: 'btn btn-success'
+      '  
+      = link_to 'Cancel and return to users', account_users_path, class: 'btn btn-link'
+      
+
+javascript:
+  $(function(){
+    enablePermissionsAutofill('#user_role_ids', #{ raw @user.available_roles_json });
+  })

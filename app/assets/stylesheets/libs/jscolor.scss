@@ -1,0 +1,16 @@
+.jcolor-pad-m {
+  background-image: asset-url('jscolor/cross.gif');
+}
+.jscolor-sld-m {
+  background-image: asset-url('jscolor/arrow.gif');
+}
+
+.jscolor-pad {
+  &.hv {
+    background-image: asset-url('jscolor/hv.png');
+  }
+
+  &.hs {
+    background-image: asset-url('jscolor/hs.png');
+  }
+}

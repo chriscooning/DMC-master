@@ -1,0 +1,14 @@
+#account-roles-new.regular-content
+  .page-header
+    h1 Add role
+
+  .col-md-8.col-md-offset-2
+    = simple_form_for @role, url: account_roles_path do |f|
+      = f.input :name
+      = f.input :description, required: false
+
+      = render partial: "backend/roles/permissions", locals: {f: f}
+
+      = f.submit class: 'btn btn-success'
+      '  
+      = link_to 'Cancel and return to users', account_roles_path, class: 'btn btn-link'

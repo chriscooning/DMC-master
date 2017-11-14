@@ -1,0 +1,76 @@
+- if theme.present?
+  - if theme['body_bg_color'].present?
+    css:
+      body {
+        background-color: ##{ theme['body_bg_color'] };
+      }
+  - if theme['body_font_color'].present?
+    css:
+      body {
+        color: ##{theme['body_font_color']};
+      }
+  - if theme['body_link_color'].present?
+    css:
+      a {
+        color: ##{theme['body_link_color']};
+      }
+  - if theme['nav_bg_color'].present?
+    css:
+      .navbar-inverse {
+        background-color: ##{theme['nav_bg_color']};
+        border-color: ##{theme['nav_bg_color']};
+      }
+
+  - if theme['nav_link_color'].present?
+    css:
+      .navbar-nav li a {
+        color: ##{theme['nav_link_color']} !important;
+      }
+
+  - if theme['dropdown_link_color'].present?
+    css:
+      .navbar-nav .dropdown-menu li a {
+        color: ##{theme['dropdown_link_color']} !important;
+      }
+
+  - if theme['dropdown_link_color_active'].present?
+    css:
+      .navbar-nav .dropdown-menu .active a {
+        color: ##{theme['dropdown_link_color_active']} !important;
+      }
+
+  - if theme['dropdown_bg_link_color_active'].present?
+    css:
+      .navbar-nav .dropdown-menu .active a {
+        background-color: ##{theme['dropdown_bg_link_color']} !important;
+      }
+
+  - if theme['dropdown_toggle_open_bg_color'].present?
+    css:
+      .navbar-nav .open a {
+        background-color: ##{theme['dropdown_toggle_open_bg_color']} !important;
+      }
+      .navbar-nav .dropdown-menu {
+        background-color: ##{theme['dropdown_toggle_open_bg_color']} !important;
+      }
+
+  - if theme['button_color'].present?
+    css:
+      .btn-primary, .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus,
+      .pagination>.active>a, .pagination>.active>a:hover, .pagination>.active>a:focus, .pagination>.active>span, .pagination>.active>span:hover, .pagination>.active>span:focus {
+        background-color: ##{theme['button_color']} !important;
+        border-color: ##{theme['button_color']} !important;
+      }
+
+  - if theme['button_font_color'].present?
+    css:
+      .btn-primary, .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        color: ##{theme['button_font_color']} !important;
+      }
+
+  - if theme['thumbnail_tile_background_color'].present?
+    css:
+      .panel, .modal-content {
+        background-color: ##{theme['thumbnail_tile_background_color']} !important;
+        border-color: ##{theme['thumbnail_tile_background_color']} !important;
+      }

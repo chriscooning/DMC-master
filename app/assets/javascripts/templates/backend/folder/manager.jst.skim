@@ -1,0 +1,16 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      button.close data-dismiss="modal" &times;
+      h4.modal-title Manage Folders
+    .modal-body
+      .manage-folder-list
+
+      .new-folder
+        form.folder-attributes
+          .row
+            .col-md-8
+              .form-group
+                input.form-control name='name' placeholder='Enter folder name'
+            .col-md-4
+              button.add.btn.btn-success Add Folder

@@ -1,0 +1,118 @@
+#assets-list {
+  .asset-item {
+    padding-left: 10px;
+    padding-right: 10px;
+    .panel {
+      padding: 0 10px;
+      .panel-body {
+        padding: 10px 15px;
+      }
+    }
+    .asset-preview {
+      padding: 5px 0;
+      height: 140px;
+      overflow: hidden;
+      text-align: center;
+      a {
+        display: block;
+        height: 130px;
+        line-height: 126px;
+        background: image-url('ajax-loader.gif') center center no-repeat;
+      }
+      img {
+        max-width: 100%;
+        vertical-align: middle;
+      }
+    }
+    .asset-details {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      height: 0;
+      &.with-title {
+        height: 44px;
+      }
+      &.with-description {
+        height: 100px;
+      }
+      &.with-title.with-description {
+        height: 122px;
+      }
+    }
+    .asset-title {
+      padding: 0 0 5px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .asset-description {
+      padding: 0 0 5px;
+      height: 80px;
+      overflow: auto;
+    }
+    .processing, .document-block {
+      width: 100%;
+      height: 136px;
+      a {
+        color: #333;
+      }
+      .glyphicon {
+        font-size: 44px;
+        background: #fff;
+      }
+      .filetype-icon, .glyphicon {
+        margin: 0 auto;
+        width: 48px;
+        height: 48px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+.modal {
+  &.pdf-preview {
+    .modal-dialog {
+      width: 95%;
+      #pdf-preview {
+        height: 500px;
+      }
+    }
+  }
+}
+.asset-modal {
+  .asset-preview {
+    img {
+      width: 100%;
+    }
+  }
+  .asset-description {
+    margin-top: 10px;
+  }
+}
+/*TODO: better fix for tinymce paragraph spacing */
+.asset-description p {margin:0 0 5px 0;padding:0;}
+.redactor_editor p {margin:0!important;padding:0;line-height: 1.5rem;}
+
+.sort-modal {
+  .assets-sort-list {
+    .row {
+      padding-bottom: 5px;
+    }
+  }
+}
+.template-upload {
+  .name {
+    word-break: break-all;
+  }
+}
+.analytics-modal {
+  #result {
+    display: none;
+    height: 300px;
+    #graph {
+      height: 300px;
+      width: 100%;
+    }
+  }
+}
+/* fixes outline for jwplayer */
+.jw-tab-focus:focus { outline: 0 !important; }

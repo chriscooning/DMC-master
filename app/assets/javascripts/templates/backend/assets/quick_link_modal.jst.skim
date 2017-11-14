@@ -1,0 +1,68 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      button.close data-dismiss="modal" &times;
+      h4.modal-title Quick Link
+    .modal-body
+      form.asset-attributes
+
+        p The quick link for this asset is:
+        .panel.panel-default
+          .panel-body
+            p#quicklink-field class="pull-left"
+              strong== @quicklink_url || "Generating..."
+            a.btn.btn-info.btn-xs.pull-right.preview-btn href="#{@quicklink_url}" target="_blank" class=('hidden' if !@quicklink_url?)
+              | Preview
+
+        hr
+
+        strong Settings
+        br
+        br
+
+        .form-group
+          p Should this link expire on a certain date?
+
+          .row
+            .col-md-2
+              input#quicklink_should_expire.form-control type='checkbox' data-on-text='Yes' data-off-text='No' checked=!!@quicklink_valid_to
+            .col-md-6
+              .date-picker-group.input-group  class=('hidden' if !@quicklink_valid_to)
+                input#quicklink_valid_to.form-control.datetime name='quicklink_valid_to' val= "#{@quicklink_valid_to}" placeholder="Select a date"
+                span.input-group-addon
+                  span.glyphicon.glyphicon-calendar
+
+
+        .form-group
+          p Would you like to allow users to download this asset?
+
+          .row
+            .col-md-2
+              input#quicklink_downloadable.form-control type='checkbox' data-on-text='Yes' data-off-text='No' checked=!!@quicklink_downloadable name='quicklink_downloadable'
+
+
+    .modal-footer
+      button.save.btn.btn-success Update Settings
+/
+/ .modal-dialog
+/   .modal-content
+/     .modal-header
+/       button.close data-dismiss="modal" &times;
+/       h4.modal-title Asset Quick Link Settings
+/     .modal-body
+/       form.asset-attributes
+/         .form-group
+/           label Quick Link will be accessible until
+/           input.form-control.datetime name='quicklink_valid_to' type='text'
+/           /span.help-block Leave empty if don't want to limit accessibility
+/         .checkbox
+/           label
+/             input(name='quicklink_downloadable' type='checkbox' value='1' checked=!!@quicklink_downloadable)
+/             | Allow user to download this asset
+/         .form-group
+/           label Current Link
+/           input.form-control#quicklink-field readonly='true' type='text' value="#{@quicklink_url}"
+/
+/     .modal-footer
+/       button.generate.btn.btn-primary Generate Link
+/       button.save.btn.btn-success Update Settings

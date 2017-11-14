@@ -1,0 +1,1 @@
+class DMC.Routers.Frontend.Folder extends DMC.Routers.Shared.Folder

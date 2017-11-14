@@ -1,0 +1,14 @@
+.row data-id='#{@id}'
+  .col-md-8.title
+    span.glyphicon.glyphicon-resize-vertical.btn.btn-link
+    .btn.btn-link = @name
+    - if @enable_password
+      span.label.label-info Password protection
+  .col-md-4
+    .btn-group
+      a.btn.btn-primary.edit href='#!edit/#{@id}'
+        span.glyphicon.glyphicon-pencil
+        |  Edit
+      button.btn.btn-danger.delete data-id="#{@id}"
+        span.glyphicon.glyphicon-trash
+        |  Delete

@@ -1,0 +1,40 @@
+- if @gallery.menu_links.any?
+  - content_for :menu_links
+    - @gallery.menu_links.each do |item|
+      = navigation_link_to item.content, item.link
+
+#gallery-show
+  h1 = @gallery.name
+  - if @gallery.gallery_message.present?
+    .message = @gallery.gallery_message
+  ul.nav.nav-pills#folders-list
+    li#manage-folders
+      - if @gallery.respond_to?(:folders_can_be_managed) and @gallery.folders_can_be_managed
+        a.btn href='#!manager'
+          span.glyphicon.glyphicon-cog
+          |  Manage Folders
+  #search-container.row
+    .sort-selector.col-md-6
+    form.form-inline.col-md-6.text-right
+      .form-group
+        input#search.form-control type="text" name="search" placeholder='Search'
+      button.btn.btn-default type="submit" Search
+
+  - unless infinite_pagination
+    .pagination-container.row.text-center
+  #assets-list.row
+    .col-md-12
+      = image_tag 'ajax-loader.gif', width: 16, height: 16, alt: ''
+      ' Loading more media...
+  h3.text-center
+    - if backend?
+      span#no-folders You don't have any folders yet. #{ link_to "Create folder", "#!manager" }
+    - elsif @folders.empty?
+      | This gallery doesn't have any folders yet.
+  - unless infinite_pagination
+    .pagination-container.row.text-center
+
+javascript:
+  $(function(){
+    window.DMC.collection = new DMC.Collections.Folders(#{{ @folders.to_json }}, { gallery_id: #{@gallery.id} });
+  });

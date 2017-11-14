@@ -1,0 +1,23 @@
+#account-users-edit.regular-content
+  .page-header
+    h1 Edit sub user
+
+  .col-md-8.col-md-offset-2
+    = simple_form_for @user.resource, url: account_user_path(@user) do |f|
+      = f.input :full_name, required: true, disabled: true
+      = f.input :email, required: true, disabled: true
+      = f.input :organization
+      = f.input :location
+
+      = f.association :roles, collection: @user.available_roles, as: :select
+
+      = render partial: "backend/roles/permissions", locals: {f: f}
+
+      = f.submit class: 'btn btn-success'
+      '  
+      = link_to 'Cancel and return to users', account_users_path, class: 'btn btn-link'
+
+javascript:
+  $(function(){
+    enablePermissionsAutofill('#user_role_ids', #{ raw @user.available_roles_json });
+  })

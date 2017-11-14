@@ -1,0 +1,1 @@
+$("#announcements-list").empty().append("<%= raw escape_javascript(render("list", announcements: @announcements))%>")

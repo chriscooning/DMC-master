@@ -1,0 +1,45 @@
+#folders-list {
+  margin: 20px 0;
+  .folder-item {
+    float: none;
+    display: inline-block;
+    &.active {
+      span {
+        display: inline;
+      }
+    }
+    span {
+      font-size: 12px;
+      display: none;
+    }
+  }
+}
+.frontend {
+  #folders-list {
+    .folder-item {
+      span {
+        display: none;
+      }
+    }
+  }
+}
+.new-folder {
+  margin-top: 20px;
+}
+#search-container {
+  margin-bottom: 20px;
+  .form-group {
+    margin-right: 10px;
+  }
+}
+
+// Manage folders
+.manage-folder-list {
+  .row {
+    margin-bottom: 5px;
+    .title {
+      padding-top: 4px;
+      font-size: 16px;
+    }
+  }
+}

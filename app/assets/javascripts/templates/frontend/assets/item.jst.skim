@@ -1,0 +1,56 @@
+.panel.panel-default
+  .panel-body
+    .row.asset-preview.implement_here_too
+      - if @is_image || @is_video
+        a href="#!assets/#{@id}"
+          img src="#{@thumb_url}" width="220"
+      - else
+        .document-block.text-center
+          - if @is_pdf
+            - if @downloadable
+              a href="#!assets/#{@id}"
+                - if @icon_type
+                  img.filetype-icon src="/icons/file_types/#{@icon_type}.png"
+                - else
+                  span.glyphicon.glyphicon-file
+            - else
+              a
+                - if @icon_type
+                  img.filetype-icon src="/icons/file_types/#{@icon_type}.png"
+                - else
+                  span.glyphicon.glyphicon-file
+          - else
+            - if !!@thumb_url
+              img src="#{@thumb_url}" width="220"
+            - else
+              - if @downloadable
+                a href="#{@download}"
+                  - if @icon_type
+                    img.filetype-icon src="/icons/file_types/#{@icon_type}.png"
+                  - else
+                    span.glyphicon.glyphicon-file
+              - else
+                a
+                  - if @icon_type
+                    img.filetype-icon src="/icons/file_types/#{@icon_type}.png"
+                  - else
+                    span.glyphicon.glyphicon-file
+    - visible_classes = ''
+    - if @is_title_visible
+      - visible_classes += 'with-title '
+    - if @is_description_visible
+      - visible_classes += 'with-description '
+    .asset-details.row class=(visible_classes)
+      - if @is_title_visible
+        .asset-title
+          = @title
+      - if @is_description_visible
+        .asset-description
+          == @description
+    .row
+      - if @has_preview
+        - if @processed
+          a.btn.btn-primary.pull-left href="#!assets/#{@id}" View
+      - else
+        - if @downloadable
+          a.btn.btn-primary.pull-left href="#{@download}" Download

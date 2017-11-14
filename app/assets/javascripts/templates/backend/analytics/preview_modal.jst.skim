@@ -1,0 +1,11 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      button.close data-dismiss="modal" &times;
+      h4.modal-title = @title
+    .modal-body.asset-modal
+      .asset-preview
+        - if @is_image
+          img src="#{@medium_url}"
+        - else if @is_video
+          #clipplayer Loading the player...

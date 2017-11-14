@@ -1,0 +1,25 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      button.close data-dismiss="modal" &times;
+      h4.modal-title = @title if @show_title
+    .modal-body.asset-modal
+      - if @previous_asset_id or @next_asset_id
+        .asset-navigation style="position: relative; width: 100%;"
+          - if @previous_asset_id
+            a.show_previous_asset href="#!assets/#{ @previous_asset_id }" data-id="#{ @previous_asset_id }" style='float: left;' Previous
+          - if @next_asset_id
+            a.show_next_asset href="#!assets/#{ @next_asset_id }" data-id="#{ @next_asset_id }" style='float: right;' Next
+      .asset-preview
+        - if @is_image
+          img src="#{@medium_url}"
+        - else if @is_audio
+          #clipplayer Loading the player...
+        - else if @is_video
+          #clipplayer Loading the player...
+        - else if @is_pdf
+          = @safe JST["templates/shared/assets/_pdf"](url: @pdf_preview_url)
+      .asset-description == @description
+    - if !!@downloadable
+      .modal-footer
+        a.download.btn.btn-success href="#{@download}" Download

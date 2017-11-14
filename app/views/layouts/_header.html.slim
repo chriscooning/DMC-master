@@ -1,0 +1,56 @@
+#navbar.navbar class=(backend? ? 'navbar-inverse navbar-static-top' : 'navbar-inverse navbar-fixed-top')
+  div class=(backend? ? 'container-fluid' : 'container')
+    .navbar-header
+      button.navbar-toggle.pull-left type="button" data-toggle="collapse" data-target=".navbar-collapse"
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = content_for(:brand)
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        - if current_account
+          = render 'layouts/account_logo'
+        - else
+          = render 'layouts/default_logo'
+        = content_for(:menu_links)
+      ul.nav.navbar-nav.pull-right data-no-turbolink="true"
+        /- if current_subdomain_owner
+          li.dropdown
+            a.dropdown-toggle href="#" data-toggle="dropdown"
+              | Select gallery
+              = render 'galleries_menu', galleries: current_account.galleries
+        - if frontend? && user_signed_in?
+          - if current_user.can_access_backend?
+            = navigation_link_to "Return to admin", dashboard_url(host: configatron.host)
+          - else
+            = navigation_link_to 'Logout', destroy_user_session_path
+        - if backend? && user_signed_in?
+          = content_for(:header_menu)
+          - if accessor.can_create_assets?
+            = navigation_link_to '#!uploader', class: 'uploader-link' ,id: "nav-upload-btn" do
+              .glyphicon.glyphicon-cloud-upload
+              span.hide-text Upload Media
+          = navigation_link_to "http://#{base_url}", target: :blank do
+            .glyphicon.glyphicon-new-window
+            span  Preview
+          = navigation_link_to 'My Profile', profile_settings_path
+          - if current_user.accounts.size > 1
+            li = link_to current_account.name, '#'
+            - accessor.other_accounts.each do |other_account|
+              li = link_to other_account.name, select_current_account_path(other_account.subdomain), method: :post
+          = navigation_link_to 'Logout', destroy_user_session_path
+        /- elsif frontend? && media_user_signed_in?
+            = navigation_link_to 'Return to dasboard', dashboard_url(host: configatron.host)
+        /- elsif backend? && media_user_signed_in?
+          li.dropdown
+            a.dropdown-toggle href="#" data-toggle="dropdown"
+              | Settings
+              b class="caret"
+            ul.dropdown-menu
+              = navigation_link_to 'Account Settings', edit_media_user_registration_path
+          = navigation_link_to 'Logout', destroy_media_user_session_path
+        - elsif show_registration_link? && !user_signed_in?
+          = navigation_link_to 'Registration', new_user_registration_path, class: 'first'
+          /= navigation_link_to 'Registration for Media', new_media_user_registration_path, class: 'first'
+          = navigation_link_to 'Login', new_user_session_path
+          /= navigation_link_to 'Media Login', new_media_user_session_path

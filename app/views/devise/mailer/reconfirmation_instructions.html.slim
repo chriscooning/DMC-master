@@ -1,0 +1,6 @@
+h2 Hello, #{@resource.full_name}
+p
+  | You have requested to change your e-mail address. You must confirm in order to change your address. If you do nothing, your e-mail will remain the same.:
+
+p
+  = link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)

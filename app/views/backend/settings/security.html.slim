@@ -1,0 +1,100 @@
+.regular-content
+  .page-header
+    h1 Security
+
+    ul.nav.nav-tabs.settings-tabs
+      li.active = link_to 'My Membership', '#membership', :'data-toggle' => "tab"
+      li = link_to 'My Invites', '#invites', :'data-toggle' => "tab"
+      li = link_to 'Subdomain Authorization', '#subdomain', :'data-toggle' => "tab"
+      li = link_to 'Requests', '#invitations', :'data-toggle' => "tab"
+
+  .tab-content
+    #invitations.tab-pane
+      .table-responsive
+        table.table.table-striped
+          tr
+            th Email
+            th User
+            th Gallery
+            th Actions
+          - @invites.each do |invitation_request|
+            tr
+              td = invitation_request.email
+              td = invitation_request.user.present? ? invitation_request.user.full_name : 'unknown'
+              td = link_to invitation_request.gallery.name, gallery_path(invitation_request.gallery)
+              td 
+                = link_to 'Add', new_account_user_path(invitation_request: invitation_request.id)
+                = link_to 'Delete', invitation_request_path(invitation_request), method: :delete
+
+    /#invites.tab-pane
+      .table-responsive
+        table.table.table-striped
+          tr
+            th User Name
+            th Gallery
+            th Role
+            th Last login
+            th Actions
+          - @invites.each do |invite|
+            tr
+              td = invite.user_name
+              td = link_to invite.gallery_name, gallery_path(invite.gallery)
+              td = invite.role
+              td = invite.last_login_display
+              td = link_to "Destroy", invite_path(invite), method: :delete, class: 'btn btn-danger'
+
+    /  = link_to "+ Invite user", new_invite_path, class: 'btn btn-success'
+
+    /  - if @admin_invitation_requests.any?
+        .page-header
+          h1 Not registered admins
+        .table-responsive
+          table.table.table-striped
+            tr
+              th Email
+              th Gallery
+              th Actions
+            - @admin_invitation_requests.each do |request|
+              tr
+                td = request.email
+                td = link_to request.gallery.try(:name), gallery_path(request.gallery)
+                td = link_to "Destroy", invitation_request_path(request), method: :delete, class: 'btn btn-danger'
+
+    /  - if @viewer_invitation_requests.any?
+        .page-header
+          h1 Viewer invitations
+        .table-responsive
+          table.table.table-striped
+            tr
+              th Email
+              th Gallery
+              th Actions
+            - @viewer_invitation_requests.each do |request|
+              tr
+                td = request.email
+                td = link_to request.gallery.try(:name), gallery_path(request.gallery)
+                td = link_to "Destroy", invitation_request_path(request), method: :delete, class: 'btn btn-danger'
+
+    #membership.tab-pane
+      .table-responsive
+        table.table.table-striped
+          tr
+            th Account
+            th Gallery
+            th Role
+          - @memberships.each do |invite|
+            tr
+              td = invite.account.try(:subdomain)
+              td = link_to invite.gallery_name, invite.gallery_path
+              td = invite.role
+
+    #subdomain.tab-pane
+      = simple_form_for @account, as: :account, url: account_path do |f|
+        .col-md-8
+          = f.input :enable_subdomain_password, label: 'Enable password protection for entire subdomain', as: :boolean
+        .col-md-8
+          - if f.object.enable_subdomain_password?
+            = f.input :subdomain_password
+          - else
+            = f.input :subdomain_password, disabled: true, class: 'hidden'
+        .col-md-8 = f.button :submit, "Apply Changes",  class: 'btn btn-primary'

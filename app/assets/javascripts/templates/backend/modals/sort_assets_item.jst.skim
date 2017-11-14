@@ -1,0 +1,20 @@
+.row data-position='#{@position}' data-id='#{@id}'
+  .col-md-2.text-center
+    - if @is_video || @is_image
+      - if @processed
+        img src="#{@thumb_url}" height=40
+      - else 
+        span.glyphicon.glyphicon-refresh.btn.btn-link
+    - else
+      span.glyphicon.glyphicon-file.btn.btn-link
+  .col-md-6
+    span.glyphicon.glyphicon-resize-vertical.btn.btn-link
+    .btn.btn-link= @title
+  .col-md-4
+    .btn-group
+      .btn.btn-success.make-first
+        span.glyphicon.glyphicon-arrow-up
+        |  First
+      .btn.btn-primary.make-last
+        span.glyphicon.glyphicon-arrow-down
+        |  Last

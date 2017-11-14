@@ -1,0 +1,9 @@
+#blog-show
+  h1 = @blog_post.title
+  .row.blog-text
+    .col-md-2 
+      - if @blog_post.image?
+        = image_tag @blog_post.image.url(:small)
+    .col-md-10 == @blog_post.text
+  .row
+    .publish_at = @blog_post.publish_at_display

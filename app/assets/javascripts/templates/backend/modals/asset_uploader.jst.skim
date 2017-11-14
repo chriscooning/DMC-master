@@ -1,0 +1,45 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      button.close data-dismiss="modal" &times;
+      h4.modal-title Upload Files
+    .modal-body
+      form.file-attributes
+        .form-group
+          label Gallery
+          select.form-control#galleries name='gallery_id'
+        .form-group
+          label Folder
+          select.form-control#folders name='folder_id'
+        .form-group
+          label Title
+          input.form-control name='title' maxlength=50
+          span.hint Limit 50 characters
+        .form-group
+          label Description
+          textarea.form-control#description name='description' rows=7
+        .checkbox
+          label
+            input type='checkbox' name='downloadable' checked='checked' value='1' Allow visitors to download this media
+        .form-group
+          label Enter tags
+          input.form-control#tags-input name='tags'
+      form#file-uploader.form-group.fileupload-buttonbar enctype="multipart/form-data"
+        input type="hidden" name="key"
+        input type="hidden" name="AWSAccessKeyId" value="#{window.awsKey}"
+        input type="hidden" name="acl" value='public-read'
+        input type="hidden" name="success_action_status" value="201"
+        input type="hidden" name="policy"
+        input type="hidden" name="signature"
+        .btn-group
+          span.btn.btn-success.fileinput-button
+            i.glyphicon.glyphicon-plus
+            span  Add files...
+            input.add-files multiple="" name="file" type="file"
+          button.btn.btn-warning.cancel type="reset"
+            i.glyphicon.glyphicon-ban-circle
+            span  Cancel upload
+        table#files.table
+          tbody
+    .modal-footer
+      button.save-files.btn.btn-success.hide Save Files

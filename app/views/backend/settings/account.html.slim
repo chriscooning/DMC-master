@@ -1,0 +1,72 @@
+= simple_form_for @account, as: :account, url: account_path do |f|
+  .regular-content
+    .page-header
+      h1 Customize
+
+    ul.nav.nav-tabs.settings-tabs
+      li.active = link_to 'Page settings', '#page', :'data-toggle' => "tab", class: ''
+      li = link_to 'Portal', '#portal', :'data-toggle' => "tab"
+      li = link_to 'Theme', '#theme', :'data-toggle' => "tab"
+
+    .tab-content
+      #page.tab-pane.active
+        .col-md-6
+          h3 Logo Options
+          = f.input :logo
+          - if @account.logo_file_name.present?
+            h4 Current logo
+            = image_tag @account.logo.url, height: 50
+            = f.input :delete_logo, as: :boolean, unchecked_value: '', wrapper: :inline_checkbox
+          = f.input :logo_url
+          = f.input :logo_text
+        .col-md-6
+          h3 Subdomain Options
+          = f.input :subdomain, label: 'Subdomain'
+          = f.input :allow_subdomain_indexing, wrapper: :inline_checkbox
+          = f.input :enable_subdomain_password, label: 'Enable password protection for entire account?', as: :boolean, wrapper: :inline_checkbox
+          - if f.object.enable_subdomain_password?
+            = f.input :subdomain_password
+          - else
+            = f.input :subdomain_password, disabled: true, class: 'hidden'
+        .col-md-8 = f.button :submit, "Apply Changes", class: 'btn btn-success btn-lg'
+
+      #portal.tab-pane
+        .col-md-6
+          h3 Portal Options
+          = f.input :landing_title, label: 'Portal Title'
+          = f.input :portal_header_image, label: "Portal Header Image"
+          - if @account.portal_header_image?
+            h4 Current portal image
+            = image_tag @account.portal_header_image.url(:thumb)
+            = f.input :delete_portal_header_image, as: :boolean, unchecked_value: '', wrapper: :inline_checkbox
+          = f.input :welcome_message, label: "Welcome Message"
+          = f.input :restrictions_message, label: "Restrictions Message"
+          = f.input :copyrights
+        .col-md-6
+          h3
+            ' Announcements
+            .pull-right = link_to "Add Announcement", new_announcement_path, class: 'btn btn-primary'
+          #announcements-list
+            = render 'backend/announcements/list', announcements: @announcements
+        .col-md-8 = f.button :submit, "Apply Changes",  class: 'btn btn-success btn-lg'
+
+      #theme.tab-pane
+        h3 Theme Options
+        p.help-block Select a color for page elements. To use the default values, leave the field empty
+        .col-md-6
+          = f.simple_fields_for :theme, OpenStruct.new(@account.theme) do |ff|
+            = ff.input :nav_bg_color, input_html: { class: 'colorpicker' }
+            = ff.input :nav_link_color, input_html: { class: 'colorpicker' }
+            = ff.input :body_bg_color, input_html: { class: 'colorpicker' }
+            = ff.input :body_font_color, input_html: { class: 'colorpicker' }
+            = ff.input :body_link_color, input_html: { class: 'colorpicker' }
+            = ff.input :thumbnail_tile_background_color, input_html: { class: 'colorpicker' }
+        .col-md-6
+          = f.simple_fields_for :theme, OpenStruct.new(@account.theme) do |ff|
+            = ff.input :button_color, input_html: { class: 'colorpicker' }
+            = ff.input :button_font_color, input_html: { class: 'colorpicker' }
+            = ff.input :dropdown_link_color, input_html: { class: 'colorpicker' }
+            = ff.input :dropdown_link_color_active, input_html: { class: 'colorpicker' }
+            = ff.input :dropdown_bg_link_color_active, input_html: { class: 'colorpicker' } 
+            = ff.input :dropdown_toggle_open_bg_color, input_html: { class: 'colorpicker' }
+        .col-md-12 = f.button :submit, "Apply Changes", class: 'btn btn-success btn-lg'

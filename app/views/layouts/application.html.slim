@@ -1,0 +1,32 @@
+doctype html
+= conditional_html do
+  head
+    title= configatron.app_name
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "//use.typekit.net/yhu2oru.js"
+    javascript:
+      try{Typekit.load();}catch(e){}
+    /[if lte IE 8]
+      = javascript_include_tag "libs/excanvas"
+    = javascript_include_tag "application"
+    = javascript_include_tag "//jwpsrv.com/library/ZZxAqPoYEeKnJBIxOUCPzg.js"
+    = csrf_meta_tags
+    = render 'layouts/head'
+  body#body class=(controller_action_class) class=('common' if common_page?) class=(backend? ? 'backend' : '')
+    #content
+      = render "layouts/header"
+      #wrapper class=(controller_action_class) class=(backend? ? '' : 'container')
+        = render 'layouts/flashes'
+
+        - if backend?
+          #sidebar-left
+            = render partial: 'shared/settings_menu'
+          #container.clearfix
+            = yield
+        - else
+          = yield
+
+    - if common_page?
+      = render 'layouts/common_footer'
+    - if configatron.google.analytics.enabled
+      = render 'layouts/analytics'

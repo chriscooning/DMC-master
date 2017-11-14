@@ -1,0 +1,5 @@
+table.table.table-striped
+  - resources.each do |gallery|
+    tr
+      td = link_to gallery.name, gallery_path(gallery)
+.paginator = paginate resources, remote: true, params: { controller: :galleries, action: :index, format: :js }

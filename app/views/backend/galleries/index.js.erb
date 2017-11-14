@@ -1,0 +1,2 @@
+$("#gallery-list").empty();
+$("#gallery-list").html("<%= raw escape_javascript(render('list', resources: @galleries))%>");

@@ -1,0 +1,33 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      button.close data-dismiss="modal" &times;
+      h4.modal-title
+        - if @id
+          | Edit gallery
+        - else
+          | New Gallery
+    .modal-body
+      form.gallery-attributes autocomplete='off'
+        .form-group
+          label for='gallery-name' Name
+          input#gallery-name.form-control type='text' name='name' value="#{ @name }" placeholder="Enter gallery name" autocomplete='off'
+        .form-group
+          label for='gallery-message' Welcome message
+          textarea#gallery-message.form-control rows="4" type='text' name='gallery_message' placeholder="Enter welcome message" style="resize: none;"
+            = @gallery_message
+        .checkbox
+          label
+            input(type="checkbox" name='visible' value='1' checked=!!@visible) Visible for users?
+        /.checkbox
+          /label
+            /input(type='checkbox' name='enable_invitation_credentials' value='1' checked=!!@enable_invitation_credentials) Enable invitation credentialing
+        .checkbox
+          label
+            input#password(type='checkbox' name='enable_password' value='1' checked=!!@enable_password) Enable password protection
+        .form-group#password-field class=('hide' if !@enable_password)
+          label for='password' Password
+          input.form-control type='password' placeholder='Enter new password' name='password'
+    .modal-footer
+      button.btn.btn-default data-dismiss="modal" Close
+      a.btn.btn-primary.save Save changes

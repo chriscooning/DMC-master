@@ -1,0 +1,14 @@
+.row
+  - announcements.each do |announcement|
+    .col-md-12
+      h3 
+        =' announcement.title
+        - if accessor.can_edit_announcements?
+          .pull-right
+            =' link_to edit_announcement_path(announcement), class: 'btn btn-primary' do
+              span.glyphicon.glyphicon-edit
+            = link_to announcement_path(announcement), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" } do
+              span.glyphicon.glyphicon-remove
+      .text = announcement.text
+      .date = I18n.l(announcement.created_at, format: :display)
+= render "shared/pagination", resource: announcements, controller: 'announcements', action: 'index'

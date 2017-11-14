@@ -1,0 +1,3 @@
+.alert class=@type
+  button.close type="button" &times;
+  == @content

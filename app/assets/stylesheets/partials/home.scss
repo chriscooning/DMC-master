@@ -1,0 +1,293 @@
+body {
+  text-rendering: optimizeLegibility;
+}
+
+.pages-home {
+  .navbar-inverse {
+    background: rgba(0, 0, 0, 0.0);
+    border:none;
+    a {
+      color: #fff;
+    }
+    .navbar-nav li a {
+      color: #fff;
+    }
+  }
+}
+
+
+
+.pages-home #content {
+  margin-top: 0px !important;
+}
+
+.container.pages-home {
+  width: 100%;
+  overflow: hidden;
+  max-width: none;
+  padding: 0;
+  .alert {
+    margin-bottom: 0;
+    position: absolute;
+    width: 100%;
+  }
+}
+
+.home-intro {
+  margin-top: -5px;
+  text-align: center;
+  padding-bottom: 40px;
+  color: white;
+  /*background-color: #258CB3;
+  background-image: image-url("home/star_bg.png");*/
+  .text-group {
+    position: relative;
+    z-index: 10;
+    top:160px;
+    h1 {
+      font-size: 50px;
+    }
+    .desc {
+      padding-top: 15px;
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+    .sign-up {
+      .btn {
+        left: 50%;
+        margin: 0 auto;
+        color: #ffffff;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        background-color: #f59806;
+        padding: 11px 19px;
+        font-size: 18px;
+        border-color: #f59806;
+      }
+    }
+  }
+  .parallax {
+    position: relative;
+    height: 280px;
+  }
+  .rocket {
+    position: absolute;
+    top: 255px;
+    left: 50%;
+    margin-left: -95px;
+  }
+
+  .fire {
+    position: absolute;
+    top: 481px;
+    left: 50%;
+    margin-left: -45px;
+  }
+
+  .plume {
+    position: absolute;
+    margin-top: -100px;
+    margin-left: -116px;
+  }
+
+  .clouds {
+    max-width: inherit;
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    margin-left: -1250px;
+  }
+
+  .clouds_bg {
+    max-width: inherit;
+    position: absolute;
+    bottom: -40px;
+    left: -700px;
+  } 
+}
+.home-usage {
+  padding: 60px 0 100px 0;
+  background-color: #f1f5fb;
+}
+
+.home-features {
+  background: #f1f5fb;
+}
+
+.platformUsage {
+  padding: 0 0 0 0;
+  h2 {
+     color: #516D77;
+  }
+}  
+
+.featureRow {
+  padding: 25px 0 25px 0;
+  /*border-bottom: 1px dotted #3E7B93;*/
+}
+.featureRow h2{
+  color: #516D77;
+}
+.featureRowLast {
+  padding: 25px 0 25px 0;
+  h2 {
+    color: #516D77;
+  }
+}
+
+.ourCustomers {
+  text-align:center;
+  margin: 65px 0 65px 0;
+
+}
+
+.concoursLogo {
+  padding-top: 28px;
+}
+
+.ourCustomers h2 {
+  margin: 0;
+  color: #516D77;
+  padding: 0 0 25px 0;
+}
+
+/*pricing!!!*/
+.pricing-wrapper{
+  background-color: #152227;
+  width: 100%;
+  /*background-image: image-url("home/star_bg.png");*/
+  h2 {
+    color: #fff;
+    text-align:center;
+  }
+  h3 {
+    margin-bottom: 35px;
+    text-align:center;
+    color: #fff;
+    margin: 0 0 15 0;
+  }
+}
+
+.glow {
+  /*background-image: image-url("home/glow_master.png");*/
+  width: 100%;
+  height: 100%;
+  background-repeat:no-repeat;
+  background-position:center;
+}
+
+.earth {
+  width: 100%;
+  height: 100%;
+  padding: 65px 0 225px 0;
+  background-image: image-url("home/earth.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+.flat {
+  margin:0 0 0 0;
+}
+
+.flat .plan {
+  border-radius: 6px;
+  list-style: none;
+  padding: 0 0 20px;
+  margin: 20px 0 15px 0;
+  background: #fff;
+  text-align: center;
+}
+.flat .plan li {
+  padding: 10px 15px;
+  color: #ccc;
+  border-top: 1px solid #f5f5f5;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+}
+.flat .plan li.plan-price {
+  border-top: 0;
+}
+.flat .plan li.plan-name {
+  border-radius: 6px 6px 0 0;
+  padding: 15px;
+  font-size: 24px;
+  line-height: 24px;
+  color: #fff;
+  background: #3E7B93;
+  margin-bottom: 30px;
+  border-top: 0;
+}
+.flat .plan li > strong {
+  color: #3E7B93;
+}
+.flat .plan li.plan-action {
+  margin-top: 10px;
+  border-top: 0;
+}
+.flat .plan:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  transition: 300ms;
+  -webkit-transition: 300ms; /* Safari and Chrome */
+}
+.flat .plan.featured li.plan-name {
+  background: #f59806;
+}
+.flat .plan.featured:hover li.plan-name {
+  background: #f59806;
+}
+.flat .plan:hover li.plan-name {
+  background: #f59806;
+}
+
+.landingCTA{
+  color: #fff;
+  width: 100%;
+  height: 600px;
+  text-align:center;
+  background-color: #258CB3;
+  padding: 200px 0 85px 0;
+  h2 {
+  color:#fff;
+} .btn-primary {
+  background-color: #f59806;
+  border-color: #f59806;
+} }
+
+.cta-bg-animated {
+  background: linear-gradient(270deg, #8f9997, #1bcbe8, #eeab3b);
+  background-size: 600% 600%;
+  -webkit-animation: cta-bg-animated 30s ease infinite;
+  -moz-animation: cta-bg-animated 30s ease infinite;
+  animation: cta-bg-animated 30s ease infinite;
+}
+
+@-webkit-keyframes cta-bg-animated {
+    0%{background-position:0% 65%}
+    50%{background-position:100% 36%}
+    100%{background-position:0% 65%}
+}
+@-moz-keyframes cta-bg-animated {
+    0%{background-position:0% 65%}
+    50%{background-position:100% 36%}
+    100%{background-position:0% 65%}
+}
+@keyframes cta-bg-animated { 
+    0%{background-position:0% 65%}
+    50%{background-position:100% 36%}
+    100%{background-position:0% 65%}
+}
+
+#details {
+  -moz-animation-duration: 1s;
+  -moz-animation-delay: .2s;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-delay: .2s;
+}
+
+#missioncontrol {
+  -moz-animation-duration: .8s;
+  -moz-animation-delay: .4s;
+  -webkit-animation-duration: .8s;
+  -webkit-animation-delay: .4s;
+}

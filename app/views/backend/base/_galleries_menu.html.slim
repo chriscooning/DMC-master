@@ -1,0 +1,4 @@
+ul.dropdown-menu
+  = navigation_link_to "Home", dashboard_path
+  - galleries.each do |gallery|
+    = navigation_link_to gallery.name, gallery_path(gallery)

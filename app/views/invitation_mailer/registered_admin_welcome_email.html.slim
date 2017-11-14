@@ -1,0 +1,4 @@
+h1 Hello!
+p You've been invited to join Digital Media Center as admin to the following galleries
+- @invites.each do |invite|
+  p = link_to invite.gallery.name, subdomain_gallery_url(@user_host, invite.gallery)
